@@ -1,18 +1,22 @@
 const SearchBar = () => {
   return (
-    <div className="relative z-10 px-11 py-2">
-      <div className="w-[306px] h-[29px] bg-transparent rounded-full shadow-[0_2px_1px_rgba(0,0,0,0.20)] px-[15px] py-[7px] flex items-center justify-between">
-        
-        {/* Placeholder Text */}
-        <span className="text-xs font-bold text-text-muted tracking-[0.8px] leading-[140%]">
-          詢問任何問題
-        </span>
-        
-        {/* Microphone Icon */}
-        <svg className="w-[9px] h-[15px]" fill="#112A4C" viewBox="0 0 9 15">
-          <path d="M2 2.5C2 1.11929 3.11929 0 4.5 0C5.88071 0 7 1.11929 7 2.5V8C7 9.38071 5.88071 10.5 4.5 10.5C3.11929 10.5 2 9.38071 2 8V2.5Z"/>
-          <path d="M0.5 6.5C0.776142 6.5 1 6.72386 1 7V8C1 9.933 2.567 11.5 4.5 11.5C6.433 11.5 8 9.933 8 8V7C8 6.72386 8.22386 6.5 8.5 6.5C8.77614 6.5 9 6.72386 9 7V8C9 10.3163 7.24998 12.2238 5 12.4725V14H7C7.27614 14 7.5 14.2239 7.5 14.5C7.5 14.7761 7.27614 15 7 15H2C1.72386 15 1.5 14.7761 1.5 14.5C1.5 14.2239 1.72386 14 2 14H4V12.4725C1.75002 12.2238 0 10.3163 0 8V7C0 6.72386 0.223858 6.5 0.5 6.5Z"/>
-        </svg>
+    <div className="relative z-10 px-11 pb-4">
+      {/* Search Container */}
+      <div className="w-[306px] h-[29px] bg-white/30 backdrop-blur-sm shadow-[0_2px_4px_0_rgba(0,0,0,0.1),inset_1px_1px_2px_0_rgba(255,255,255,0.6),inset_-1px_-1px_2px_0_rgba(0,0,0,0.05)] rounded-full mx-auto relative flex items-center">
+        {/* Search Input */}
+        <input
+          type="text"
+          placeholder="詢問任何問題"
+          className="w-full h-full bg-transparent rounded-full px-4 py-2 text-sm font-bold text-text-muted tracking-[0.8px] placeholder-text-muted border-0 outline-none"
+        />
+
+        {/* Microphone Icon - Heroicons Mini */}
+        <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+          <svg className="w-4 h-4 text-[#112A4C]" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M7 4a3 3 0 016 0v6a3 3 0 11-6 0V4z" />
+            <path d="M5.5 9.643a.75.75 0 00-1.5 0V10c0 3.06 2.29 5.585 5.25 5.954V17.5h-1.5a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-1.5v-1.546A6.001 6.001 0 0016 10v-.357a.75.75 0 00-1.5 0V10a4.5 4.5 0 01-9 0v-.357z" />
+          </svg>
+        </div>
       </div>
     </div>
   )

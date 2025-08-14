@@ -13,12 +13,11 @@ function App() {
   return (
     <div className="w-full max-w-mobile mx-auto bg-white min-h-screen relative font-roboto overflow-hidden">
       <BackgroundBlurs />
-      <StatusBar />
       <Header mode={mode} onModeChange={setMode} />
       <div className="w-full h-[5px] bg-metro-gradient"></div>
       <ActionCards />
-      <AIChat />
       <SearchBar />
+      <AIChat />
       <BottomNavigation />
     </div>
   )
