@@ -5,7 +5,3 @@ node_modules/
 
 # vite
 .vite/
-
-# tailwind
-tailwind.config.js
-tailwind.config.cjs

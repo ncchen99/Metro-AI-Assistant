@@ -1,0 +1,73 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        'inter': ['Inter', 'sans-serif'],
+        'roboto': ['Roboto', 'sans-serif'],
+      },
+      colors: {
+        'metro-green': '#00A884',
+        'metro-blue': '#2D92C1',
+        'metro-light-blue': '#1476FF',
+        'metro-gray': '#E6F2F8',
+        'metro-dark': '#0F172A',
+        'metro-text': '#29292D',
+        'primary-blue': '#4088F4',
+        'light-blue': '#7FC0FB',
+        'mint-green': '#8CF6BA',
+        'text-gray': '#353535',
+        'text-muted': 'rgba(53, 53, 53, 0.40)',
+        'card-bg': 'rgba(230, 242, 248, 0.2)',
+        'chat-bg': 'rgba(56, 198, 147, 0.10)',
+      },
+      backgroundImage: {
+        'metro-gradient': 'linear-gradient(90deg, #8CF6BA 0%, #1476FF 100%)',
+        'metro-gradient-soft': 'linear-gradient(90deg, rgba(140, 246, 186, 0.60) 0%, rgba(20, 118, 255, 0.60) 100%)',
+        'metro-gradient-ai': 'linear-gradient(90deg, rgba(140, 246, 186, 0.50) 0%, rgba(20, 118, 255, 0.50) 100%)',
+        'metro-gradient-ai-bot': 'linear-gradient(180deg, #00A884 0%, #2D92C1 100%)',
+        'blur-gradient-1': 'linear-gradient(90deg, #7FC0FB 0%, #8CF6BA 76.44%)',
+        'blur-gradient-2': 'linear-gradient(90deg, #7FC0FB 31.74%, #4088F4 100%)',
+        'blur-gradient-3': 'linear-gradient(90deg, #8CF6BA 31.73%, #1476FF 100%)',
+      },
+      maxWidth: {
+        'mobile': '393px',
+      },
+      fontSize: {
+        'xs': ['8px', '11.2px'],
+        'sm': ['10px', '14px'],
+        'base': ['13px', '18.2px'],
+        'lg': ['16px', '22.4px'],
+      },
+      spacing: {
+        '15': '3.75rem',
+        '18': '4.5rem',
+        '27': '6.75rem',
+        '33': '8.25rem',
+        '34': '8.5rem',
+        '48': '12rem',
+        '52': '13rem',
+        '60': '15rem',
+      },
+      height: {
+        '6.5': '1.625rem',
+        '18': '4.5rem',
+      },
+      width: {
+        '13': '3.25rem',
+        '15': '3.75rem',
+        '27': '6.75rem',
+        '34': '8.5rem',
+        '44': '11rem',
+        '48': '12rem',
+        '52': '13rem',
+        '60': '15rem',
+      },
+    },
+  },
+  plugins: [],
+}
