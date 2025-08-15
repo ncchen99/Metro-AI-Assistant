@@ -1,8 +1,8 @@
 const ActionCards = () => {
   return (
-    <div className="relative z-10 px-[14px] pt-8 pb-4">
+    <div className="relative z-10 px-[20px] pt-8 pb-4">
       {/* Card Grid */}
-      <div className="grid grid-cols-3 gap-x-8 gap-y-5">
+      <div className="grid grid-cols-3 gap-x-5 gap-y-5">
         {/* My Ticket Card */}
         <div className="relative">
           <div className="w-[107px] h-[70px] rounded-[10px] bg-white/30 backdrop-blur-sm border border-transparent shadow-[0_2px_4px_0_rgba(0,0,0,0.1),inset_1px_1px_2px_0_rgba(255,255,255,0.4),inset_-1px_-1px_2px_0_rgba(0,0,0,0.05)] relative">
