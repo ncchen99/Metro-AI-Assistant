@@ -11,3 +11,17 @@
     -moz-osx-font-smoothing: grayscale;
   }
 }
+
+@layer utilities {
+  .scrollbar-hide {
+    /* IE and Edge */
+    -ms-overflow-style: none;
+    /* Firefox */
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    /* Safari and Chrome */
+    display: none;
+  }
+}
