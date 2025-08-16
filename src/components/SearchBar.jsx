@@ -1,4 +1,5 @@
-const SearchBar = () => {
+const SearchBar = ({ mode = 'work' }) => {
+
   return (
     <div className="relative z-10 px-11 pb-4">
       {/* Search Container */}
@@ -12,13 +13,13 @@ const SearchBar = () => {
 
         {/* Microphone Icon - Heroicons Mini */}
         <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-          <svg className="w-4 h-4 text-[#112A4C]" fill="currentColor" viewBox="0 0 20 20">
+          <svg className={`w-4 h-4 ${mode === 'work' ? 'text-primary-blue' : 'text-travel-green'}`} fill=" currentColor" viewBox="0 0 20 20">
             <path d="M7 4a3 3 0 016 0v6a3 3 0 11-6 0V4z" />
             <path d="M5.5 9.643a.75.75 0 00-1.5 0V10c0 3.06 2.29 5.585 5.25 5.954V17.5h-1.5a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-1.5v-1.546A6.001 6.001 0 0016 10v-.357a.75.75 0 00-1.5 0V10a4.5 4.5 0 01-9 0v-.357z" />
           </svg>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

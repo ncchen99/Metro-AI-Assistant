@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function CallingPopup({ mode = 'work' }) {
+function CallingPopup({ mode = 'work', type = 'meeting' }) {
   const AIAvatar = () => (
     <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
       <svg className="w-10 h-10 transition-colors duration-300" fill={mode === 'work' ? '#4088F4' : '#38c693'} viewBox="0 0 21 20">
@@ -27,13 +27,19 @@ function CallingPopup({ mode = 'work' }) {
           data-name="Text"
         >
           <div className="text-[12px] text-neutral-500" data-name="Description">
-            捷徑：專注模式
+            {type === 'meeting' ? '捷徑：專注模式' : '捷徑：撥打電話'}
           </div>
           <div
             className="mt-1 text-l font-bold text-neutral-900"
             data-name="Name"
           >
-            會議模式已開啟
+            {type === 'meeting' ? '會議模式已開啟' : (
+              <>
+                正在撥號 <span className={`${mode === 'work' ? 'text-primary-blue' : 'text-travel-green'}`}>
+                  {mode === 'work' ? '廠商（09664…' : '爸爸（09664…'}
+                </span>
+              </>
+            )}
           </div>
         </div>
         <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">

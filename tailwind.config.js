@@ -19,6 +19,7 @@ export default {
         'metro-text': '#29292D',
         'primary-blue': '#4088F4',
         'light-blue': '#7FC0FB',
+        'light-green': '#44C797FF',
         'mint-green': '#8CF6BA',
         'text-gray': '#353535',
         'text-muted': 'rgba(53, 53, 53, 0.40)',

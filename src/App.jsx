@@ -38,7 +38,7 @@ function App() {
             <Header mode={mode} onModeChange={setMode} />
             <div className="w-full h-[5px] bg-metro-gradient"></div>
             <ActionCards mode={mode} />
-            <SearchBar />
+            <SearchBar mode={mode} />
             <AIChat mode={mode} />
             <BottomNavigation />
           </div>
