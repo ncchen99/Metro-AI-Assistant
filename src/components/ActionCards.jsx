@@ -1,18 +1,32 @@
 import { useState } from 'react'
-import CallingPopup from './CallingPopup'
 
-const ActionCards = ({ mode = 'work' }) => {
+const ActionCards = ({
+  mode = 'work',
+  onOverlayChange,
+  onOverlayTypeChange,
+  onOverlayClickChange,
+  onShowCallingPopup,
+  onPopupAnimatingOut,
+  onPopupTypeChange,
+  onActiveTooltip,
+  onTooltipAnimating
+}) => {
   const [showCallingPopup, setShowCallingPopup] = useState(false)
   const [isAnimatingOut, setIsAnimatingOut] = useState(false)
   const [activeTooltip, setActiveTooltip] = useState(null)
   const [isTooltipAnimating, setIsTooltipAnimating] = useState(false)
-  const [isHoveringTooltipArea, setIsHoveringTooltipArea] = useState(false)
   const [popupType, setPopupType] = useState('meeting') // 'meeting' or 'phone'
 
   const handleMeetingModeClick = () => {
     setPopupType('meeting')
     setShowCallingPopup(true)
     setIsAnimatingOut(false)
+    onPopupTypeChange('meeting')
+    onShowCallingPopup(true)
+    onPopupAnimatingOut(false)
+    onOverlayChange(true)
+    onOverlayTypeChange('popup')
+    onOverlayClickChange(() => handleClosePopup)
     setTimeout(() => handleClosePopup(), 3000) // Auto-hide after 3 seconds
   }
 
@@ -20,14 +34,24 @@ const ActionCards = ({ mode = 'work' }) => {
     setPopupType('phone')
     setShowCallingPopup(true)
     setIsAnimatingOut(false)
+    onPopupTypeChange('phone')
+    onShowCallingPopup(true)
+    onPopupAnimatingOut(false)
+    onOverlayChange(true)
+    onOverlayTypeChange('popup')
+    onOverlayClickChange(() => handleClosePopup)
     setTimeout(() => handleClosePopup(), 3000) // Auto-hide after 3 seconds
   }
 
   const handleClosePopup = () => {
     setIsAnimatingOut(true)
+    onPopupAnimatingOut(true)
+    onOverlayChange(false)
     setTimeout(() => {
       setShowCallingPopup(false)
       setIsAnimatingOut(false)
+      onShowCallingPopup(false)
+      onPopupAnimatingOut(false)
     }, 200) // Wait for slide-out animation to complete
   }
 
@@ -55,39 +79,32 @@ const ActionCards = ({ mode = 'work' }) => {
     }
   }
 
-  const handleTooltipAreaEnter = (cardType) => {
-    setIsHoveringTooltipArea(true)
+  const handleTooltipClick = (cardType, event) => {
+    // 顯示 tooltip
     setActiveTooltip(cardType)
     setIsTooltipAnimating(false)
-  }
+    onActiveTooltip(cardType, event)
+    onTooltipAnimating(false)
+    onOverlayChange(true)
+    onOverlayTypeChange('tooltip')
+    onOverlayClickChange(() => handleTooltipHide)
 
-  const handleTooltipAreaLeave = () => {
-    setIsHoveringTooltipArea(false)
-    // Only start hide animation if we're not hovering
+    // 3秒後自動隱藏
     setTimeout(() => {
-      if (!isHoveringTooltipArea) {
-        setIsTooltipAnimating(true)
-        setTimeout(() => {
-          setActiveTooltip(null)
-          setIsTooltipAnimating(false)
-        }, 200)
-      }
-    }, 50) // Small delay to check final hover state
+      handleTooltipHide()
+    }, 3000)
   }
 
-  const handleTooltipClick = (cardType) => {
-    if (activeTooltip === cardType) {
-      setIsHoveringTooltipArea(false)
-      setIsTooltipAnimating(true)
-      setTimeout(() => {
-        setActiveTooltip(null)
-        setIsTooltipAnimating(false)
-      }, 200)
-    } else {
-      setIsHoveringTooltipArea(true)
-      setActiveTooltip(cardType)
+  const handleTooltipHide = () => {
+    setIsTooltipAnimating(true)
+    onTooltipAnimating(true)
+    onOverlayChange(false)
+    setTimeout(() => {
+      setActiveTooltip(null)
       setIsTooltipAnimating(false)
-    }
+      onActiveTooltip(null)
+      onTooltipAnimating(false)
+    }, 200)
   }
 
   return (
@@ -108,9 +125,7 @@ const ActionCards = ({ mode = 'work' }) => {
               {/* Info Icon - Heroicons Mini */}
               <div
                 className="absolute top-2 right-2 w-3 h-3 cursor-pointer"
-                onMouseEnter={() => handleTooltipAreaEnter('ticket')}
-                onMouseLeave={handleTooltipAreaLeave}
-                onClick={() => handleTooltipClick('ticket')}
+                onClick={(e) => handleTooltipClick('ticket', e)}
               >
                 <svg
                   className={`w-3 h-3 transition-colors duration-300 ${mode === 'work' ? 'text-primary-blue' : 'text-travel-green'}`}
@@ -128,21 +143,7 @@ const ActionCards = ({ mode = 'work' }) => {
             </div>
           </div>
 
-          {/* Tooltip */}
-          {activeTooltip === 'ticket' && (
-            <div
-              className={`absolute -top-2 -right-2 z-50 transition-all duration-200 ease-out ${isTooltipAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
-                }`}
-              onMouseEnter={() => handleTooltipAreaEnter('ticket')}
-              onMouseLeave={handleTooltipAreaLeave}
-            >
-              <div className="flex overflow-hidden flex-col justify-center px-7 py-2 text-xs font-semibold tracking-wide leading-3 text-center text-white rounded-md bg-neutral-700 bg-opacity-70 max-w-[123px] shadow-[0px_1px_2px_rgba(0,0,0,0.1)]">
-                <div className="text-white">
-                  {tooltipContent[mode].ticket}
-                </div>
-              </div>
-            </div>
-          )}
+
         </div>
 
         {/* Podcast Card */}
@@ -157,9 +158,7 @@ const ActionCards = ({ mode = 'work' }) => {
               {/* Info Icon - Heroicons Mini */}
               <div
                 className="absolute top-2 right-2 w-3 h-3 cursor-pointer"
-                onMouseEnter={() => handleTooltipAreaEnter('podcast')}
-                onMouseLeave={handleTooltipAreaLeave}
-                onClick={() => handleTooltipClick('podcast')}
+                onClick={(e) => handleTooltipClick('podcast', e)}
               >
                 <svg
                   className={`w-3 h-3 transition-colors duration-300 ${mode === 'work' ? 'text-primary-blue' : 'text-travel-green'}`}
@@ -179,21 +178,7 @@ const ActionCards = ({ mode = 'work' }) => {
             </div>
           </div>
 
-          {/* Tooltip */}
-          {activeTooltip === 'podcast' && (
-            <div
-              className={`absolute -top-2 -right-2 z-50 transition-all duration-200 ease-out ${isTooltipAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
-                }`}
-              onMouseEnter={() => handleTooltipAreaEnter('podcast')}
-              onMouseLeave={handleTooltipAreaLeave}
-            >
-              <div className="flex overflow-hidden flex-col justify-center px-7 py-2 text-xs font-semibold tracking-wide leading-3 text-center text-white rounded-md bg-neutral-700 bg-opacity-70 max-w-[123px] shadow-[0px_1px_2px_rgba(0,0,0,0.1)]">
-                <div className="text-white">
-                  {tooltipContent[mode].podcast}
-                </div>
-              </div>
-            </div>
-          )}
+
         </div>
 
         {/* Mute Card */}
@@ -211,11 +196,9 @@ const ActionCards = ({ mode = 'work' }) => {
               {/* Info Icon - Heroicons Mini */}
               <div
                 className="absolute top-2 right-2 w-3 h-3 cursor-pointer"
-                onMouseEnter={() => handleTooltipAreaEnter('meeting')}
-                onMouseLeave={handleTooltipAreaLeave}
                 onClick={(e) => {
                   e.stopPropagation()
-                  handleTooltipClick('meeting')
+                  handleTooltipClick('meeting', e)
                 }}
               >
                 <svg
@@ -234,21 +217,7 @@ const ActionCards = ({ mode = 'work' }) => {
             </div>
           </div>
 
-          {/* Tooltip */}
-          {activeTooltip === 'meeting' && (
-            <div
-              className={`absolute -top-2 -right-2 z-50 transition-all duration-200 ease-out ${isTooltipAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
-                }`}
-              onMouseEnter={() => handleTooltipAreaEnter('meeting')}
-              onMouseLeave={handleTooltipAreaLeave}
-            >
-              <div className="flex overflow-hidden flex-col justify-center px-2 py-2 text-xs font-semibold tracking-wide leading-3 text-center text-white rounded-md bg-neutral-700 bg-opacity-70 max-w-[140px] shadow-[0px_1px_2px_rgba(0,0,0,0.1)]">
-                <div className="text-white">
-                  {tooltipContent[mode].meeting}
-                </div>
-              </div>
-            </div>
-          )}
+
         </div>
 
         {/* Phone Card */}
@@ -266,11 +235,9 @@ const ActionCards = ({ mode = 'work' }) => {
               {/* Info Icon - Heroicons Mini */}
               <div
                 className="absolute top-2 right-2 w-3 h-3 cursor-pointer"
-                onMouseEnter={() => handleTooltipAreaEnter('phone')}
-                onMouseLeave={handleTooltipAreaLeave}
                 onClick={(e) => {
                   e.stopPropagation()
-                  handleTooltipClick('phone')
+                  handleTooltipClick('phone', e)
                 }}
               >
                 <svg
@@ -289,21 +256,7 @@ const ActionCards = ({ mode = 'work' }) => {
             </div>
           </div>
 
-          {/* Tooltip */}
-          {activeTooltip === 'phone' && (
-            <div
-              className={`absolute -top-2 -right-2 z-50 transition-all duration-200 ease-out ${isTooltipAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
-                }`}
-              onMouseEnter={() => handleTooltipAreaEnter('phone')}
-              onMouseLeave={handleTooltipAreaLeave}
-            >
-              <div className="flex overflow-hidden flex-col justify-center px-7 py-2 text-xs font-semibold tracking-wide leading-3 text-center text-white rounded-md bg-neutral-700 bg-opacity-70 max-w-[123px] shadow-[0px_1px_2px_rgba(0,0,0,0.1)]">
-                <div className="text-white">
-                  {tooltipContent[mode].phone}
-                </div>
-              </div>
-            </div>
-          )}
+
         </div>
 
         {/* Add Card 1 */}
@@ -327,40 +280,9 @@ const ActionCards = ({ mode = 'work' }) => {
         </div>
       </div>
 
-      {/* Backdrop overlay for calling popup */}
-      {showCallingPopup && (
-        <div
-          className={`fixed inset-0 bg-black/20 z-[9998] transition-opacity duration-200 ${isAnimatingOut ? 'opacity-0' : 'opacity-100'
-            }`}
-          onClick={handleClosePopup}
-        />
-      )}
 
-      {/* Backdrop overlay for tooltip */}
-      {activeTooltip && (
-        <div
-          className={`fixed inset-0 bg-black/30 z-[45] transition-opacity duration-200 ${isTooltipAnimating ? 'opacity-0' : 'opacity-100'
-            }`}
-          onClick={handleTooltipAreaLeave}
-        />
-      )}
 
-      {/* Calling Popup */}
-      {showCallingPopup && (
-        <div
-          className={`fixed top-20 left-1/2 transform -translate-x-1/2 z-[9999] transition-all duration-200 ease-out ${isAnimatingOut
-            ? '-translate-y-full opacity-0'
-            : 'translate-y-0 opacity-100'
-            }`}
-          style={{
-            animation: isAnimatingOut
-              ? 'slideOut 200ms ease-out forwards'
-              : 'slideIn 200ms ease-out forwards'
-          }}
-        >
-          <CallingPopup mode={mode} type={popupType} />
-        </div>
-      )}
+
     </div>
   )
 }
