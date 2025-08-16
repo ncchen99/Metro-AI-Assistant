@@ -36,6 +36,9 @@ export default {
         'blur-gradient-2': 'linear-gradient(90deg, #7FC0FB 31.74%, #4088F4 100%)',
         'blur-gradient-3': 'linear-gradient(90deg, #8CF6BA 31.73%, #1476FF 100%)',
         'travel-gradient': 'linear-gradient(90deg, #38c693 0%, #1dc971 100%)',
+        'travel-blur-gradient-1': 'linear-gradient(90deg, #38c693 0%, #7FC0FB 76.44%)',
+        'travel-blur-gradient-2': 'linear-gradient(90deg, #38c693 31.74%, #4088F4 100%)',
+        'travel-blur-gradient-3': 'linear-gradient(90deg, #38c693 31.73%, #1476FF 100%)',
       },
       maxWidth: {
         'mobile': '393px',

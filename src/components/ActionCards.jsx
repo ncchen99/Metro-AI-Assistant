@@ -124,8 +124,10 @@ const ActionCards = ({ mode = 'work' }) => {
 
         {/* Add Card 1 */}
         <div className="relative">
-          <div className="w-[107px] h-[70px] rounded-[10px] bg-white/30 backdrop-blur-sm border border-dashed border-[#1577FF] border-opacity-30 shadow-[0_2px_4px_0_rgba(0,0,0,0.1),inset_1px_1px_2px_0_rgba(255,255,255,0.4),inset_-1px_-1px_2px_0_rgba(0,0,0,0.05)] relative flex items-center justify-center">
-            <svg className="w-6 h-6 text-light-blue" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+          <div className={`w-[107px] h-[70px] rounded-[10px] bg-white/30 backdrop-blur-sm border border-dashed border-opacity-30 shadow-[0_2px_4px_0_rgba(0,0,0,0.1),inset_1px_1px_2px_0_rgba(255,255,255,0.4),inset_-1px_-1px_2px_0_rgba(0,0,0,0.05)] relative flex items-center justify-center transition-colors duration-300 ${
+            mode === 'work' ? 'border-[#1577FF]' : 'border-[#38c693]'
+          }`}>
+            <svg className={`w-6 h-6 transition-colors duration-300 ${mode === 'work' ? 'text-light-blue' : 'text-travel-green'}`} fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
               <path strokeLinecap="round" d="M12 6v12m6-6H6" />
             </svg>
           </div>
@@ -133,8 +135,10 @@ const ActionCards = ({ mode = 'work' }) => {
 
         {/* Add Card 2 */}
         <div className="relative">
-          <div className="w-[107px] h-[70px] rounded-[10px] bg-white/30 backdrop-blur-sm border border-dashed border-[#1577FF] border-opacity-30 shadow-[0_2px_4px_0_rgba(0,0,0,0.1),inset_1px_1px_2px_0_rgba(255,255,255,0.4),inset_-1px_-1px_2px_0_rgba(0,0,0,0.05)] relative flex items-center justify-center">
-            <svg className="w-6 h-6 text-light-blue" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+          <div className={`w-[107px] h-[70px] rounded-[10px] bg-white/30 backdrop-blur-sm border border-dashed border-opacity-30 shadow-[0_2px_4px_0_rgba(0,0,0,0.1),inset_1px_1px_2px_0_rgba(255,255,255,0.4),inset_-1px_-1px_2px_0_rgba(0,0,0,0.05)] relative flex items-center justify-center transition-colors duration-300 ${
+            mode === 'work' ? 'border-[#1577FF]' : 'border-[#38c693]'
+          }`}>
+            <svg className={`w-6 h-6 transition-colors duration-300 ${mode === 'work' ? 'text-light-blue' : 'text-travel-green'}`} fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
               <path strokeLinecap="round" d="M12 6v12m6-6H6" />
             </svg>
           </div>

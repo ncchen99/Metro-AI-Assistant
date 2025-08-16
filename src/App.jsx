@@ -34,15 +34,9 @@ function App() {
         {/* App Content - Positioned inside the frame */}
         <div className="absolute top-[20px] left-[20px] w-[395px] h-[850px] overflow-hidden">
           <div className="w-full h-full bg-white relative font-roboto overflow-hidden rounded-[45px]">
-            <BackgroundBlurs />
+            <BackgroundBlurs mode={mode} />
             <Header mode={mode} onModeChange={setMode} />
-            <div
-              className={`w-full h-[5px] transition-all duration-500 ${
-                mode === 'work'
-                  ? 'bg-metro-gradient'
-                  : 'bg-gradient-to-r from-[#38c693] to-[#1dc971]'
-              }`}
-            ></div>
+            <div className="w-full h-[5px] bg-metro-gradient"></div>
             <ActionCards mode={mode} />
             <SearchBar />
             <AIChat mode={mode} />
