@@ -24,6 +24,8 @@ export default {
         'text-muted': 'rgba(53, 53, 53, 0.40)',
         'card-bg': 'rgba(230, 242, 248, 0.2)',
         'chat-bg': 'rgba(56, 198, 147, 0.10)',
+        'travel-green': '#38c693',
+        'travel-light-green': '#1dc971',
       },
       backgroundImage: {
         'metro-gradient': 'linear-gradient(90deg, #8CF6BA 0%, #1476FF 100%)',
@@ -33,6 +35,7 @@ export default {
         'blur-gradient-1': 'linear-gradient(90deg, #7FC0FB 0%, #8CF6BA 76.44%)',
         'blur-gradient-2': 'linear-gradient(90deg, #7FC0FB 31.74%, #4088F4 100%)',
         'blur-gradient-3': 'linear-gradient(90deg, #8CF6BA 31.73%, #1476FF 100%)',
+        'travel-gradient': 'linear-gradient(90deg, #38c693 0%, #1dc971 100%)',
       },
       maxWidth: {
         'mobile': '393px',

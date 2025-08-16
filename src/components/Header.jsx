@@ -43,12 +43,34 @@ const Header = ({ mode, onModeChange }) => {
 
       </div>
 
-      {/* Mode Toggle - Work mode */}
+      {/* Mode Toggle - Interactive */}
       <div className="absolute right-5 top-[10px] w-[60px] h-[26px]">
-        <div className="relative w-[60px] h-[26px]">
-          <div className="absolute w-[54px] h-[18px] rounded-[13px] bg-primary-blue left-0 top-1"></div>
-          <div className="absolute w-[26px] h-[26px] rounded-full border-2 border-gray-100 bg-gray-100 shadow-lg left-[34px] top-0"></div>
-          <span className="absolute text-xs text-white font-inter left-2 top-0 leading-[26px]">工作</span>
+        <div
+          className="relative w-[60px] h-[26px] cursor-pointer"
+          onClick={() => onModeChange(mode === 'work' ? 'travel' : 'work')}
+        >
+          {/* Background track */}
+          <div
+            className={`absolute w-[54px] h-[18px] rounded-[13px] left-0 top-1 transition-all duration-300 ${
+              mode === 'work' ? 'bg-primary-blue' : 'bg-[#38c693]'
+            }`}
+          ></div>
+
+          {/* Toggle switch */}
+          <div
+            className={`absolute w-[26px] h-[26px] rounded-full border-2 border-gray-100 bg-gray-100 shadow-lg top-0 transition-all duration-300 ${
+              mode === 'work' ? 'left-[34px]' : 'left-0'
+            }`}
+          ></div>
+
+          {/* Text label */}
+          <span
+            className={`absolute text-xs text-white font-inter top-0 leading-[26px] transition-all duration-300 ${
+              mode === 'work' ? 'left-2' : 'left-8'
+            }`}
+          >
+            {mode === 'work' ? '工作' : '旅游'}
+          </span>
         </div>
       </div>
 
