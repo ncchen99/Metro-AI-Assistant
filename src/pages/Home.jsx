@@ -1,17 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Home.module.css";
 
 function Home() {
+  const [tooltip, setTooltip] = useState({ show: false, text: '', x: 0, y: 0 });
+
+  const handleMouseEnter = (featureName, event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+
+    setTooltip({
+      show: true,
+      text: featureName,
+      x: rect.right + 10,
+      y: rect.top + rect.height / 2
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTooltip({ show: false, text: '', x: 0, y: 0 });
+  };
+
   return (
     <section id="main-visual" className={styles.homeSection}>
       <div className={styles.mainContainer}>
         <img
-          src="/images/a7c955cd739d7fa1381c047fc68c8b4cdbd97586.png"
+          src="/images/background.png"
           alt="Abstract blue wave background with the word METRO"
           className={styles.backgroundImage}
         />
         <img
-          src="/images/f38eb832a7a58bb3fc20e33d51eefd3868a6afd4.png"
+          src="/images/train.png"
           alt="Abstract blue wave with the word TAIPEI"
           className={styles.taipeiImage}
         />
@@ -21,7 +38,7 @@ function Home() {
           <div className={styles.glassPane}></div>
           <div className={styles.modelKit}>
             <img
-              src="/images/b1749039e17e1eb14ab2f6946a9ae0d970b0c5d8.png"
+              src="/images/bone.png"
               alt="Plastic model kit of metro icons"
               className={styles.modelKitBaseImg}
             />
@@ -35,66 +52,104 @@ function Home() {
         {/* Floating icons */}
         <div className={styles.floatingIcons}>
           <img
-            src="/images/720f3137c5377432631e3b01c115b0d296e0591c.png"
+            src="/images/捷運路線.png"
             alt="Decorative floating icon"
             className={`${styles.icon} ${styles.icon1}`}
+            onMouseEnter={(e) => handleMouseEnter("捷運路線", e)}
+            onMouseLeave={handleMouseLeave}
           />
           <img
-            src="/images/611c56379776d3d1bb8d4eab9327dbcb45864eea.png"
+            src="/images/動態消息.png"
             alt="Decorative floating icon"
             className={`${styles.icon} ${styles.icon2}`}
+            onMouseEnter={(e) => handleMouseEnter("動態消息", e)}
+            onMouseLeave={handleMouseLeave}
           />
           <img
-            src="/images/71f8e8d5c99904a5a7ea0cb7ece3eb02f4ee4377.png"
+            src="/images/下車提醒.png"
             alt="Decorative floating icon"
             className={`${styles.icon} ${styles.icon3}`}
+            onMouseEnter={(e) => handleMouseEnter("下車提醒", e)}
+            onMouseLeave={handleMouseLeave}
           />
           <img
-            src="/images/100d55b7d2c47af6148eea47f334d35d173cf14a.png"
+            src="/images/更多功能.png"
             alt="Decorative floating icon"
             className={`${styles.icon} ${styles.icon4}`}
+            onMouseEnter={(e) => handleMouseEnter("更多功能", e)}
+            onMouseLeave={handleMouseLeave}
           />
           <img
-            src="/images/c61ad787d57a24babfd7b4310e4cc7fc879e93c3.png"
+            src="/images/捷運小幫手.png"
             alt="Decorative floating icon"
             className={`${styles.icon} ${styles.icon5}`}
+            onMouseEnter={(e) => handleMouseEnter("捷運小幫手", e)}
+            onMouseLeave={handleMouseLeave}
           />
           <img
-            src="/images/c203f2499bc4e5f07b5cfc451c0bebe5d147e366.png"
+            src="/images/我的票券.png"
             alt="Decorative floating icon"
             className={`${styles.icon} ${styles.icon6}`}
+            onMouseEnter={(e) => handleMouseEnter("我的票券", e)}
+            onMouseLeave={handleMouseLeave}
           />
           <img
-            src="/images/8642f00ce718cc4965357d5ceb4241296591bc3b.png"
+            src="/images/主頁.png"
             alt="Decorative floating icon"
             className={`${styles.icon} ${styles.icon7}`}
+            onMouseEnter={(e) => handleMouseEnter("主頁", e)}
+            onMouseLeave={handleMouseLeave}
           />
           <img
-            src="/images/486ec3a079a9f7a8b7af23b12e61eb7f5c4a6e9b.png"
+            src="/images/GO優惠.png"
             alt="Decorative floating icon"
             className={`${styles.icon} ${styles.icon8}`}
+            onMouseEnter={(e) => handleMouseEnter("GO優惠", e)}
+            onMouseLeave={handleMouseLeave}
           />
           <img
-            src="/images/7f9fd60e742a88aa4a1d62127c1416eb705db06a.png"
+            src="/images/AI助理.png"
             alt="Decorative floating icon"
             className={`${styles.icon} ${styles.icon9}`}
+            onMouseEnter={(e) => handleMouseEnter("AI助理", e)}
+            onMouseLeave={handleMouseLeave}
           />
           <img
-            src="/images/cd46516b3b67b055fa9ed3d5d640cfcd232deecf.png"
+            src="/images/路線擁擠程度.png"
             alt="Decorative floating icon"
             className={`${styles.icon} ${styles.icon10}`}
+            onMouseEnter={(e) => handleMouseEnter("路線擁擠程度", e)}
+            onMouseLeave={handleMouseLeave}
           />
           <img
-            src="/images/fd74676b7323adacf71f3b80063969fae94b751d.png"
+            src="/images/我的帳戶.png"
             alt="Decorative floating icon"
             className={`${styles.icon} ${styles.icon11}`}
+            onMouseEnter={(e) => handleMouseEnter("我的帳戶", e)}
+            onMouseLeave={handleMouseLeave}
           />
           <img
-            src="/images/406d0c8330c627b342f0b87fe9490bab3cdddad3.png"
+            src="/images/捷運點.png"
             alt="Decorative floating M logo icon"
             className={`${styles.icon} ${styles.icon12}`}
+            onMouseEnter={(e) => handleMouseEnter("捷運點", e)}
+            onMouseLeave={handleMouseLeave}
           />
         </div>
+
+        {/* Tooltip */}
+        {tooltip.show && (
+          <div
+            className={styles.tooltip}
+            style={{
+              left: tooltip.x,
+              top: tooltip.y,
+              transform: 'translateY(-50%)'
+            }}
+          >
+            {tooltip.text}
+          </div>
+        )}
       </div>
     </section>
   );
