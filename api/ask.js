@@ -79,8 +79,7 @@ export default async function handler(req, res) {
 
         // 4. 執行 assistant 並等待完成
         const run = await openai.beta.threads.runs.createAndPoll(thread.id, {
-            assistant_id: assistant.id,
-            timeout: 30000 // 30 seconds timeout
+            assistant_id: assistant.id
         });
 
         console.log('Run status:', run.status);
