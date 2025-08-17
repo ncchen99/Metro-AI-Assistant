@@ -5,3 +5,9 @@ node_modules/
 
 # vite
 .vite/
+
+# tools
+tools/
+
+# .env
+.env

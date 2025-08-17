@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import usePageTitle from '../hooks/usePageTitle';
 import PageTransition from '../components/PageTransition';
+import useAnimatedNavigate from '../hooks/useAnimatedNavigate';
 
 function Demo() {
-  const navigate = useNavigate();
+  const animatedNavigate = useAnimatedNavigate();
   const { feature } = useParams();
   const [isIframeLoaded, setIsIframeLoaded] = useState(false);
   const [showLoading, setShowLoading] = useState(true);
@@ -237,7 +237,7 @@ function Demo() {
 
         {/* Back button - positioned at top left of entire screen */}
 
-        <button onClick={() => navigate('/')} className="fixed top-8 left-8 z-30 px-6 py-3 backdrop-blur-md bg-white/20 border border-white/30 shadow-lg rounded-3xl animate-fade-in hover:scale-105 transition-all duration-300">
+        <button onClick={(e) => animatedNavigate('/', e)} className="fixed top-8 left-8 z-30 px-6 py-3 backdrop-blur-md bg-white/20 border border-white/30 shadow-lg rounded-3xl animate-fade-in hover:scale-105 transition-all duration-300">
           <div className="flex justify-center items-center h-full">
             <div className="text-xl font-bold text-black tracking-[8px] max-md:text-base max-md:tracking-[4px] max-sm:text-sm max-sm:tracking-[2px]">
               BACK

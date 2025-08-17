@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import StatusBar from '../components/StatusBar'
 import Header from '../components/Header'
 import ActionCards from '../components/ActionCards'
@@ -10,9 +9,10 @@ import BackgroundBlurs from '../components/BackgroundBlurs'
 import CallingPopup from '../components/CallingPopup'
 import usePageTitle from '../hooks/usePageTitle'
 import PageTransition from '../components/PageTransition'
+import useAnimatedNavigate from '../hooks/useAnimatedNavigate'
 
 function AIAssistant() {
-    const navigate = useNavigate()
+    const animatedNavigate = useAnimatedNavigate()
     const [mode, setMode] = useState('work')
     const [showOverlay, setShowOverlay] = useState(false)
     const [overlayType, setOverlayType] = useState('')
@@ -262,7 +262,7 @@ function AIAssistant() {
                 </div>
 
                 {/* Back button - positioned at top left of entire screen */}
-                <button onClick={() => navigate('/')} className="fixed top-8 left-8 z-30 px-6 py-3 backdrop-blur-md bg-white/20 border border-white/30 shadow-lg rounded-3xl animate-fade-in hover:scale-105 transition-all duration-300">
+                <button onClick={(e) => animatedNavigate('/', e)} className="fixed top-8 left-8 z-30 px-6 py-3 backdrop-blur-md bg-white/20 border border-white/30 shadow-lg rounded-3xl animate-fade-in hover:scale-105 transition-all duration-300">
                     <div className="flex justify-center items-center h-full">
                         <div className="text-xl font-bold text-black tracking-[8px] max-md:text-base max-md:tracking-[4px] max-sm:text-sm max-sm:tracking-[2px]">
                             BACK

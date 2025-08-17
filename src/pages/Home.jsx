@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
 import usePageTitle from "../hooks/usePageTitle";
 import PageTransition from "../components/PageTransition";
+import useAnimatedNavigate from "../hooks/useAnimatedNavigate";
 
 function Home() {
-  const navigate = useNavigate();
+  const animatedNavigate = useAnimatedNavigate();
   const [tooltip, setTooltip] = useState({ show: false, text: '', x: 0, y: 0 });
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [shakeIcon, setShakeIcon] = useState(null);
@@ -29,17 +29,17 @@ function Home() {
   };
 
   // 處理圖標點擊事件
-  const handleIconClick = (featureName) => {
+  const handleIconClick = (featureName, event) => {
     // 有功能的圖標
     const functionalIcons = ["主頁", "捷運路線", "捷運小幫手", "路線擁擠程度", "GO優惠", "捷運點", "AI助理"];
 
     if (functionalIcons.includes(featureName)) {
       if (featureName === "主頁") {
-        navigate("/demo/main");
+        animatedNavigate("/demo/main", event);
       } else if (featureName === "AI助理") {
-        navigate("/ai-assistant");
+        animatedNavigate("/ai-assistant", event);
       } else {
-        navigate(`/demo/${encodeURIComponent(featureName)}`);
+        animatedNavigate(`/demo/${encodeURIComponent(featureName)}`, event);
       }
     } else {
       // 沒有功能的圖標，觸發搖晃動畫
@@ -110,7 +110,7 @@ function Home() {
               className={`${styles.icon} ${styles.icon1} ${shakeIcon === "捷運路線" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("捷運路線", e)}
               onMouseLeave={handleMouseLeave}
-              onClick={() => handleIconClick("捷運路線")}
+              onClick={(e) => handleIconClick("捷運路線", e)}
               style={{ cursor: 'pointer' }}
             />
             <img
@@ -119,7 +119,7 @@ function Home() {
               className={`${styles.icon} ${styles.icon2} ${shakeIcon === "動態消息" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("動態消息", e)}
               onMouseLeave={handleMouseLeave}
-              onClick={() => handleIconClick("動態消息")}
+              onClick={(e) => handleIconClick("動態消息", e)}
               style={{ cursor: 'pointer' }}
             />
             <img
@@ -128,7 +128,7 @@ function Home() {
               className={`${styles.icon} ${styles.icon3} ${shakeIcon === "下車提醒" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("下車提醒", e)}
               onMouseLeave={handleMouseLeave}
-              onClick={() => handleIconClick("下車提醒")}
+              onClick={(e) => handleIconClick("下車提醒", e)}
               style={{ cursor: 'pointer' }}
             />
             <img
@@ -137,7 +137,7 @@ function Home() {
               className={`${styles.icon} ${styles.icon4} ${shakeIcon === "更多功能" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("更多功能", e)}
               onMouseLeave={handleMouseLeave}
-              onClick={() => handleIconClick("更多功能")}
+              onClick={(e) => handleIconClick("更多功能", e)}
               style={{ cursor: 'pointer' }}
             />
             <img
@@ -146,7 +146,7 @@ function Home() {
               className={`${styles.icon} ${styles.icon5} ${shakeIcon === "捷運小幫手" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("捷運小幫手", e)}
               onMouseLeave={handleMouseLeave}
-              onClick={() => handleIconClick("捷運小幫手")}
+              onClick={(e) => handleIconClick("捷運小幫手", e)}
               style={{ cursor: 'pointer' }}
             />
             <img
@@ -155,7 +155,7 @@ function Home() {
               className={`${styles.icon} ${styles.icon6} ${shakeIcon === "我的票券" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("我的票券", e)}
               onMouseLeave={handleMouseLeave}
-              onClick={() => handleIconClick("我的票券")}
+              onClick={(e) => handleIconClick("我的票券", e)}
               style={{ cursor: 'pointer' }}
             />
             <img
@@ -164,7 +164,7 @@ function Home() {
               className={`${styles.icon} ${styles.icon7} ${shakeIcon === "主頁" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("主頁", e)}
               onMouseLeave={handleMouseLeave}
-              onClick={() => handleIconClick("主頁")}
+              onClick={(e) => handleIconClick("主頁", e)}
               style={{ cursor: 'pointer' }}
             />
             <img
@@ -173,7 +173,7 @@ function Home() {
               className={`${styles.icon} ${styles.icon8} ${shakeIcon === "GO優惠" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("GO優惠", e)}
               onMouseLeave={handleMouseLeave}
-              onClick={() => handleIconClick("GO優惠")}
+              onClick={(e) => handleIconClick("GO優惠", e)}
               style={{ cursor: 'pointer' }}
             />
             <img
@@ -182,7 +182,7 @@ function Home() {
               className={`${styles.icon} ${styles.icon9} ${shakeIcon === "AI助理" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("AI助理", e)}
               onMouseLeave={handleMouseLeave}
-              onClick={() => handleIconClick("AI助理")}
+              onClick={(e) => handleIconClick("AI助理", e)}
               style={{ cursor: 'pointer' }}
             />
             <img
@@ -191,7 +191,7 @@ function Home() {
               className={`${styles.icon} ${styles.icon10} ${shakeIcon === "路線擁擠程度" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("路線擁擠程度", e)}
               onMouseLeave={handleMouseLeave}
-              onClick={() => handleIconClick("路線擁擠程度")}
+              onClick={(e) => handleIconClick("路線擁擠程度", e)}
               style={{ cursor: 'pointer' }}
             />
             <img
@@ -200,7 +200,7 @@ function Home() {
               className={`${styles.icon} ${styles.icon11} ${shakeIcon === "我的帳戶" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("我的帳戶", e)}
               onMouseLeave={handleMouseLeave}
-              onClick={() => handleIconClick("我的帳戶")}
+              onClick={(e) => handleIconClick("我的帳戶", e)}
               style={{ cursor: 'pointer' }}
             />
             <img
@@ -209,7 +209,7 @@ function Home() {
               className={`${styles.icon} ${styles.icon12} ${shakeIcon === "捷運點" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("捷運點", e)}
               onMouseLeave={handleMouseLeave}
-              onClick={() => handleIconClick("捷運點")}
+              onClick={(e) => handleIconClick("捷運點", e)}
               style={{ cursor: 'pointer' }}
             />
           </div>

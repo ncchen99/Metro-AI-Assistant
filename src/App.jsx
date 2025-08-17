@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion'
 import Home from './pages/Home'
 import AIAssistant from './pages/AIAssistant'
 import Demo from './pages/Demo'
+import { AnimationProvider } from './contexts/AnimationContext'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -22,7 +23,9 @@ function AnimatedRoutes() {
 function App() {
   return (
     <Router>
-      <AnimatedRoutes />
+      <AnimationProvider>
+        <AnimatedRoutes />
+      </AnimationProvider>
     </Router>
   )
 }
