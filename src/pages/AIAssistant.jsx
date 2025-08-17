@@ -10,7 +10,7 @@ import CallingPopup from '../components/CallingPopup'
 import usePageTitle from '../hooks/usePageTitle'
 import PageTransition from '../components/PageTransition'
 import useAnimatedNavigate from '../hooks/useAnimatedNavigate'
-import { askAI, speechToText, AudioRecorder } from '../services/apiService'
+import { askAI, speechToText, voiceToAI, AudioRecorder } from '../services/apiService'
 
 function AIAssistant() {
     const animatedNavigate = useAnimatedNavigate()
@@ -51,6 +51,10 @@ function AIAssistant() {
     const [isRecording, setIsRecording] = useState(false)
     const [audioRecorder, setAudioRecorder] = useState(null)
     const [isProcessingVoice, setIsProcessingVoice] = useState(false)
+
+    // Voice streaming state
+    const [voiceStatus, setVoiceStatus] = useState('')
+    const [currentAIMessage, setCurrentAIMessage] = useState(null)
 
     // Tooltip content configuration
     const tooltipContent = {
@@ -171,6 +175,7 @@ function AIAssistant() {
             const result = await audioRecorder.startRecording();
             if (result.success) {
                 setIsRecording(true);
+                setVoiceStatus('正在錄音...');
             } else {
                 alert('無法開始錄音：' + result.error);
             }
@@ -178,27 +183,102 @@ function AIAssistant() {
             // 停止錄音並處理
             setIsRecording(false);
             setIsProcessingVoice(true);
+            setVoiceStatus('處理中...');
 
             try {
                 const result = await audioRecorder.stopRecording();
                 if (result.success) {
-                    // 語音轉文字
-                    const sttResponse = await speechToText(result.data);
-                    if (sttResponse.success && sttResponse.data.text.trim()) {
-                        // 發送轉換後的文字
-                        await handleSendMessage(sttResponse.data.text);
-                    } else {
-                        alert('語音識別失敗，請重試');
-                    }
+                    // 使用新的語音轉AI API
+                    await handleVoiceToAI(result.data);
                 } else {
                     alert('錄音失敗：' + result.error);
+                    setIsProcessingVoice(false);
+                    setVoiceStatus('');
                 }
             } catch (error) {
                 console.error('Voice processing error:', error);
                 alert('語音處理失敗，請重試');
-            } finally {
                 setIsProcessingVoice(false);
+                setVoiceStatus('');
             }
+        }
+    };
+
+    // 處理語音轉AI的SSE流
+    const handleVoiceToAI = async (audioFile) => {
+        let userMessage = null;
+        let aiMessage = null;
+
+        const callbacks = {
+            onStatus: (message) => {
+                setVoiceStatus(message);
+            },
+
+            onSTTResult: (text) => {
+                // 添加用戶訊息
+                userMessage = {
+                    id: Date.now(),
+                    type: 'user',
+                    content: text.trim(),
+                    timestamp: new Date()
+                };
+                setMessages(prev => [...prev, userMessage]);
+                setVoiceStatus('AI正在回應...');
+            },
+
+            onAIChunk: (chunk) => {
+                if (!aiMessage) {
+                    // 創建新的AI訊息
+                    aiMessage = {
+                        id: Date.now() + 1,
+                        type: 'ai',
+                        content: chunk,
+                        timestamp: new Date()
+                    };
+                    setCurrentAIMessage(aiMessage);
+                    setMessages(prev => [...prev, aiMessage]);
+                } else {
+                    // 更新現有的AI訊息
+                    aiMessage.content += chunk;
+                    setCurrentAIMessage({ ...aiMessage });
+                    setMessages(prev =>
+                        prev.map(msg =>
+                            msg.id === aiMessage.id
+                                ? { ...msg, content: aiMessage.content }
+                                : msg
+                        )
+                    );
+                }
+            },
+
+            onComplete: (data) => {
+                setIsProcessingVoice(false);
+                setVoiceStatus('');
+                setCurrentAIMessage(null);
+                console.log('Voice to AI completed:', data);
+            },
+
+            onError: (error, details) => {
+                console.error('Voice to AI error:', error, details);
+                setIsProcessingVoice(false);
+                setVoiceStatus('');
+                setCurrentAIMessage(null);
+
+                // 添加錯誤訊息
+                const errorMessage = {
+                    id: Date.now() + 1,
+                    type: 'ai',
+                    content: '抱歉，語音處理過程中遇到問題，請重試。',
+                    timestamp: new Date()
+                };
+                setMessages(prev => [...prev, errorMessage]);
+            }
+        };
+
+        try {
+            await voiceToAI(audioFile, mode, callbacks);
+        } catch (error) {
+            callbacks.onError(error.message);
         }
     };
 
@@ -324,6 +404,7 @@ function AIAssistant() {
                                         isRecording={isRecording}
                                         isProcessingVoice={isProcessingVoice}
                                         isLoading={isLoading}
+                                        voiceStatus={voiceStatus}
                                     />
                                     <AIChat
                                         mode={mode}

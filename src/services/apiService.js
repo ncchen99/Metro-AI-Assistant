@@ -78,6 +78,80 @@ export const askAI = async (question, mode = 'work') => {
 };
 
 /**
+ * 語音輸入轉AI問答 API (使用 SSE 串流)
+ * @param {File} audioFile - 音訊檔案
+ * @param {string} mode - 模式 ('work' 或 'travel')
+ * @param {Object} callbacks - 回調函數
+ * @param {Function} callbacks.onStatus - 狀態更新回調
+ * @param {Function} callbacks.onSTTResult - STT結果回調
+ * @param {Function} callbacks.onAIChunk - AI回應片段回調
+ * @param {Function} callbacks.onComplete - 完成回調
+ * @param {Function} callbacks.onError - 錯誤回調
+ */
+export const voiceToAI = async (audioFile, mode = 'work', callbacks = {}) => {
+    try {
+        const formData = new FormData();
+        formData.append('audio', audioFile);
+        formData.append('mode', mode);
+
+        const response = await fetch(`${API_BASE_URL}/voice-ask`, {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (!response.ok) {
+            throw new Error('語音請求失敗');
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        while (true) {
+            const { done, value } = await reader.read();
+
+            if (done) break;
+
+            const chunk = decoder.decode(value);
+            const lines = chunk.split('\n');
+
+            for (const line of lines) {
+                if (line.startsWith('data: ')) {
+                    try {
+                        const data = JSON.parse(line.slice(6));
+
+                        switch (data.type) {
+                            case 'status':
+                                callbacks.onStatus?.(data.message);
+                                break;
+                            case 'stt_result':
+                                callbacks.onSTTResult?.(data.text);
+                                break;
+                            case 'ai_response_chunk':
+                                callbacks.onAIChunk?.(data.chunk);
+                                break;
+                            case 'ai_response_complete':
+                                callbacks.onComplete?.(data);
+                                break;
+                            case 'error':
+                                callbacks.onError?.(data.error, data.details);
+                                return { success: false, error: data.error };
+                        }
+                    } catch (parseError) {
+                        console.warn('Failed to parse SSE data:', parseError);
+                    }
+                }
+            }
+        }
+
+        return { success: true };
+    } catch (error) {
+        console.error('Voice to AI failed:', error);
+        callbacks.onError?.(error.message);
+        return { success: false, error: error.message };
+    }
+};
+
+/**
  * 文字轉語音 API
  * @param {string} text - 要轉換的文字
  * @param {string} voice - 語音選項 (預設: 'alloy')
