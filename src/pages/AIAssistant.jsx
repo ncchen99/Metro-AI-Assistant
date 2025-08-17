@@ -250,6 +250,8 @@ function AIAssistant() {
                 };
                 setMessages(prev => [...prev, userMessage]);
                 setVoiceStatus('AI正在回應...');
+                // 設置 loading 狀態，顯示 AI 思考動畫
+                setIsLoading(true);
             },
 
             onAIChunk: (chunk) => {
@@ -263,6 +265,8 @@ function AIAssistant() {
                     };
                     setCurrentAIMessage(aiMessage);
                     setMessages(prev => [...prev, aiMessage]);
+                    // 當第一個 AI 訊息塊到達時，隱藏 loading 動畫
+                    setIsLoading(false);
                 } else {
                     // 更新現有的AI訊息
                     aiMessage.content += chunk;
