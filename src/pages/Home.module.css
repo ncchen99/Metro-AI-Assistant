@@ -1,0 +1,202 @@
+/* CSS for Home component - Metro AI Assistant Landing Page */
+
+.mainContainer {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1440 / 1024;
+    overflow: hidden;
+}
+
+.backgroundImage {
+    position: absolute;
+    top: 0.1%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.taipeiImage {
+    position: absolute;
+    top: 84.28%;
+    left: 0;
+    width: 40.63%;
+    height: 15.72%;
+    z-index: 2;
+}
+
+.centralComposition {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.glassPane {
+    position: absolute;
+    top: 9.47%;
+    left: 36.18%;
+    width: 33.06%;
+    height: 75.98%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(184, 184, 184, 0.11) 85.08%);
+    border-radius: 56px;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.modelKit {
+    position: absolute;
+    top: 9.47%;
+    left: 30.76%;
+    width: 38.47%;
+    height: 81.15%;
+}
+
+.modelKitBaseImg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.modelKitTitleGroup {
+    position: absolute;
+    top: 11.52%;
+    left: 8.63%;
+    width: 37.15%;
+    height: 4.4%;
+}
+
+.titleBackground {
+    position: absolute;
+    top: 18.03%;
+    left: 0;
+    width: 100%;
+    height: 82.02%;
+    background-color: #add2e1;
+}
+
+.titleText {
+    position: absolute;
+    top: 0;
+    left: 10.05%;
+    width: 89.94%;
+    margin: 0;
+    color: #253c6b;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: clamp(8px, 1.04vw, 15px);
+    line-height: clamp(20px, 2.77vw, 40px);
+    letter-spacing: clamp(2px, 0.41vw, 6px);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.floatingIcons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.icon {
+    position: absolute;
+    box-shadow: 2px 4px 3px 0px rgba(37, 60, 107, 0.69);
+}
+
+.icon1 {
+    top: 44.14%;
+    left: 45.14%;
+    width: 9.65%;
+    height: 11.82%;
+}
+
+.icon2 {
+    top: 74.9%;
+    left: 37.92%;
+    width: 5.76%;
+    height: 9.57%;
+}
+
+.icon3 {
+    top: 28.13%;
+    left: 51.88%;
+    width: 6.74%;
+    height: 9.18%;
+}
+
+.icon4 {
+    top: 30.76%;
+    left: 37.01%;
+    width: 4.93%;
+    height: 7.62%;
+}
+
+.icon5 {
+    top: 78.42%;
+    left: 59.58%;
+    width: 5.07%;
+    height: 7.62%;
+}
+
+.icon6 {
+    top: 39.75%;
+    left: 58.61%;
+    width: 6.67%;
+    height: 8.89%;
+}
+
+.icon7 {
+    top: 44.24%;
+    left: 34.38%;
+    width: 6.25%;
+    height: 8.86%;
+    transform: rotate(-21.93deg);
+}
+
+.icon8 {
+    top: 78.42%;
+    left: 49.38%;
+    width: 4.86%;
+    height: 6.25%;
+}
+
+.icon9 {
+    top: 56.64%;
+    left: 32.43%;
+    width: 8.37%;
+    height: 9.5%;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    transform: rotate(9.55deg);
+}
+
+.icon10 {
+    top: 55.66%;
+    left: 57.43%;
+    width: 6.74%;
+    height: 9.47%;
+}
+
+.icon11 {
+    top: 23.14%;
+    left: 58.68%;
+    width: 7.0%;
+    height: 10.55%;
+    transform: rotate(-25.14deg);
+}
+
+.icon12 {
+    top: 2.93%;
+    left: 66.94%;
+    width: 11.09%;
+    height: 15.88%;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    transform: rotate(13.97deg);
+}
