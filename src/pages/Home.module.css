@@ -65,7 +65,7 @@
     width: 34.06%;
     height: 78%;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.01) 0%, rgba(184, 184, 184, 0.011) 85.08%);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
     /* background-color: rgba(255, 255, 255, 0.1); */
     border-radius: 29px;
     box-shadow: 35px 35px 68px 0px rgba(145, 192, 255, 0.5), inset -2px -2px 16px 0px rgba(145, 192, 255, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
@@ -236,14 +236,14 @@
 .tooltip {
     position: fixed;
     background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     padding: 10px 15px;
     color: #253c6b;
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
     white-space: nowrap;
     z-index: 1000;
     pointer-events: none;

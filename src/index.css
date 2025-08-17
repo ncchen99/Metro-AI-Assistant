@@ -28,6 +28,62 @@
     display: none;
   }
 
+  .glass-card {
+    width: 134px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 56px;
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 0 12px 6px rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent);
+  }
+
+  .glass-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.8),
+        transparent,
+        rgba(255, 255, 255, 0.3));
+  }
+
+  @media (max-width: 768px) {
+    .glass-card {
+      width: 100px;
+      height: 40px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .glass-card {
+      width: 80px;
+      height: 35px;
+    }
+  }
+
   @keyframes slideIn {
     from {
       transform: translateX(-50%) translateY(-100%);
