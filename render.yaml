@@ -10,5 +10,5 @@ services:
       - key: OPENAI_API_KEY
         sync: false  # 你需要在 Render Dashboard 中手動設定這個值
       - key: PYTHON_VERSION
-        value: "3.11.0"
+        value: "3.11.5"
     healthCheckPath: /health
