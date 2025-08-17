@@ -44,7 +44,7 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
         const containerHeight = clientHeight;
         const trackPadding = 16; // 上下各8px的padding
         const trackHeight = containerHeight - (trackPadding * 2);
-        const indicatorHeight = 30; // 指示器高度保持24px
+        const indicatorHeight = 50; // 指示器高度保持50px
         const maxIndicatorPosition = trackHeight - indicatorHeight;
         const indicatorPosition = scrollPercentage * maxIndicatorPosition;
 
@@ -86,9 +86,9 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
             <div className="flex flex-col max-w-[220px] items-start">
                 <div className="relative px-3 py-2 rounded-lg shadow-[inset_0_1px_2px_0_rgba(0,0,0,0.2),inset_0_-1px_2px_0_rgba(255,255,255,0.4)] bg-chat-bg backdrop-blur-sm rounded-tl-sm">
                     <div className="flex items-center gap-1">
-                        <div className="w-2 h-2 bg-[#007AB0] rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                        <div className="w-2 h-2 bg-[#007AB0] rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                        <div className="w-2 h-2 bg-[#007AB0] rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                        <div className={`w-2 h-2 ${mode === 'work' ? 'bg-[#007AB0]' : 'bg-[#31A97DFF]'} rounded-full animate-bounce`} style={{ animationDelay: '0ms' }}></div>
+                        <div className={`w-2 h-2 ${mode === 'work' ? 'bg-[#007AB0]' : 'bg-[#31A97DFF]'} rounded-full animate-bounce`} style={{ animationDelay: '150ms' }}></div>
+                        <div className={`w-2 h-2 ${mode === 'work' ? 'bg-[#007AB0]' : 'bg-[#31A97DFF]'} rounded-full animate-bounce`} style={{ animationDelay: '300ms' }}></div>
                     </div>
                 </div>
             </div>
@@ -226,7 +226,7 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
                 {/* Scroll Indicator */}
                 {scrollIndicator.visible && scrollIndicator.trackHeight > 0 && (
                     <div
-                        className="absolute right-2 top-2 w-1 bg-white/30 rounded-full z-20"
+                        className="absolute right-2 top-2 w-1 bg-white/30 rounded-full z-20 inset-shadow-sm"
                         style={{
                             height: `${scrollIndicator.trackHeight}px`,
                             marginTop: '8px',
@@ -234,7 +234,7 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
                         }}
                     >
                         <div
-                            className={`w-1 h-10 ${mode === 'work' ? 'bg-[#268EBB]' : 'bg-[#38c693]'} rounded-full transition-all duration-150`}
+                            className={`w-1 h-10 ${mode === 'work' ? 'bg-[#268EBB]' : 'bg-[#38c693]'} rounded-full transition-all duration-150 shadow-xl`}
                             style={{
                                 transform: `translateY(${scrollIndicator.position}px)`
                             }}
