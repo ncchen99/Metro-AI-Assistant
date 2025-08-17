@@ -51,23 +51,20 @@ const Header = ({ mode, onModeChange }) => {
         >
           {/* Background track */}
           <div
-            className={`absolute w-[54px] h-[18px] rounded-[13px] left-0 top-1 transition-all duration-300 ${
-              mode === 'work' ? 'bg-primary-blue' : 'bg-[#38c693]'
-            }`}
+            className={`absolute w-[54px] h-[18px] rounded-[13px] left-0 top-1 transition-all duration-300 ${mode === 'work' ? 'bg-primary-blue' : 'bg-[#38c693]'
+              }`}
           ></div>
 
           {/* Toggle switch */}
           <div
-            className={`absolute w-[26px] h-[26px] rounded-full border-2 border-gray-100 bg-gray-100 shadow-lg top-0 transition-all duration-300 ${
-              mode === 'work' ? 'left-[34px]' : 'left-0'
-            }`}
+            className={`absolute w-[26px] h-[26px] rounded-full border-2 border-gray-100 bg-gray-100 shadow-lg top-0 transition-all duration-300 ${mode === 'work' ? 'left-[34px]' : 'left-0'
+              }`}
           ></div>
 
           {/* Text label */}
           <span
-            className={`absolute text-xs text-white font-inter top-0 leading-[26px] transition-all duration-300 ${
-              mode === 'work' ? 'left-2' : 'left-8'
-            }`}
+            className={`absolute text-xs text-white font-inter top-0 leading-[26px] transition-all duration-300 ${mode === 'work' ? 'left-2' : 'left-8'
+              }`}
           >
             {mode === 'work' ? '工作' : '旅游'}
           </span>

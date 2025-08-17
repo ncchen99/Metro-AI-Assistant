@@ -10,6 +10,7 @@ import CallingPopup from '../components/CallingPopup'
 import usePageTitle from '../hooks/usePageTitle'
 import PageTransition from '../components/PageTransition'
 import useAnimatedNavigate from '../hooks/useAnimatedNavigate'
+import { askAI, speechToText, AudioRecorder } from '../services/apiService'
 
 function AIAssistant() {
     const animatedNavigate = useAnimatedNavigate()
@@ -33,6 +34,23 @@ function AIAssistant() {
     const [activeTooltip, setActiveTooltip] = useState(null)
     const [isTooltipAnimating, setIsTooltipAnimating] = useState(false)
     const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0, showLeft: false })
+
+    // Chat state
+    const [messages, setMessages] = useState([
+        {
+            id: 1,
+            type: 'ai',
+            content: '我是AI助理，有什麼我能幫您的嗎？',
+            timestamp: new Date()
+        }
+    ])
+    const [isLoading, setIsLoading] = useState(false)
+    const [inputText, setInputText] = useState('')
+
+    // Voice recording state
+    const [isRecording, setIsRecording] = useState(false)
+    const [audioRecorder, setAudioRecorder] = useState(null)
+    const [isProcessingVoice, setIsProcessingVoice] = useState(false)
 
     // Tooltip content configuration
     const tooltipContent = {
@@ -80,6 +98,109 @@ function AIAssistant() {
         document.addEventListener('fullscreenchange', handleFullscreenChange);
         return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
     }, []);
+
+    // 初始化錄音器
+    useEffect(() => {
+        if (AudioRecorder.isSupported()) {
+            setAudioRecorder(new AudioRecorder());
+        }
+    }, []);
+
+    // 處理文字訊息發送
+    const handleSendMessage = async (text) => {
+        if (!text.trim()) return;
+
+        // 添加用戶訊息
+        const userMessage = {
+            id: Date.now(),
+            type: 'user',
+            content: text.trim(),
+            timestamp: new Date()
+        };
+
+        setMessages(prev => [...prev, userMessage]);
+        setInputText('');
+        setIsLoading(true);
+
+        try {
+            // 呼叫 AI API
+            const response = await askAI(text.trim(), mode);
+
+            if (response.success) {
+                // 添加 AI 回覆
+                const aiMessage = {
+                    id: Date.now() + 1,
+                    type: 'ai',
+                    content: response.data.answer,
+                    timestamp: new Date()
+                };
+                setMessages(prev => [...prev, aiMessage]);
+            } else {
+                // 添加錯誤訊息
+                const errorMessage = {
+                    id: Date.now() + 1,
+                    type: 'ai',
+                    content: '抱歉，我遇到了一些問題，請稍後再試。',
+                    timestamp: new Date()
+                };
+                setMessages(prev => [...prev, errorMessage]);
+            }
+        } catch (error) {
+            console.error('Send message error:', error);
+            const errorMessage = {
+                id: Date.now() + 1,
+                type: 'ai',
+                content: '抱歉，我遇到了一些問題，請稍後再試。',
+                timestamp: new Date()
+            };
+            setMessages(prev => [...prev, errorMessage]);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    // 處理語音錄音
+    const handleVoiceRecording = async () => {
+        if (!audioRecorder) {
+            alert('您的瀏覽器不支援錄音功能');
+            return;
+        }
+
+        if (!isRecording) {
+            // 開始錄音
+            const result = await audioRecorder.startRecording();
+            if (result.success) {
+                setIsRecording(true);
+            } else {
+                alert('無法開始錄音：' + result.error);
+            }
+        } else {
+            // 停止錄音並處理
+            setIsRecording(false);
+            setIsProcessingVoice(true);
+
+            try {
+                const result = await audioRecorder.stopRecording();
+                if (result.success) {
+                    // 語音轉文字
+                    const sttResponse = await speechToText(result.data);
+                    if (sttResponse.success && sttResponse.data.text.trim()) {
+                        // 發送轉換後的文字
+                        await handleSendMessage(sttResponse.data.text);
+                    } else {
+                        alert('語音識別失敗，請重試');
+                    }
+                } else {
+                    alert('錄音失敗：' + result.error);
+                }
+            } catch (error) {
+                console.error('Voice processing error:', error);
+                alert('語音處理失敗，請重試');
+            } finally {
+                setIsProcessingVoice(false);
+            }
+        }
+    };
 
     // 計算 tooltip 位置（基於滑鼠座標）
     const calculateTooltipPosition = (event) => {
@@ -194,8 +315,21 @@ function AIAssistant() {
                                         }}
                                         onTooltipAnimating={setIsTooltipAnimating}
                                     />
-                                    <SearchBar mode={mode} />
-                                    <AIChat mode={mode} />
+                                    <SearchBar
+                                        mode={mode}
+                                        inputText={inputText}
+                                        onInputChange={setInputText}
+                                        onSendMessage={handleSendMessage}
+                                        onVoiceRecording={handleVoiceRecording}
+                                        isRecording={isRecording}
+                                        isProcessingVoice={isProcessingVoice}
+                                        isLoading={isLoading}
+                                    />
+                                    <AIChat
+                                        mode={mode}
+                                        messages={messages}
+                                        isLoading={isLoading}
+                                    />
                                     <BottomNavigation />
 
                                     {/* Global Overlay */}
