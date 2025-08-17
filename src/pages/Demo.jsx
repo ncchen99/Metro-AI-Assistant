@@ -35,7 +35,7 @@ function Demo() {
         "預估到達時間"
       ],
       conclusion: "輕鬆掌握捷運動態，讓您的出行更加順暢便利。",
-      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=1-2866&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2866&embed-host=share&hide-ui=1"
+      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=1-2866&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2866&embed-host=share&hide-ui=1"
     },
     "捷運小幫手": {
       title: "捷運小幫手",
@@ -48,7 +48,7 @@ function Demo() {
         "貼心提醒服務"
       ],
       conclusion: "讓AI助手陪伴您的每一趟捷運之旅，享受智慧出行體驗。",
-      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=740-562&p=f&scaling=scale-down&content-scaling=fixed&page-id=1%3A11550&starting-point-node-id=740%3A562&embed-host=share&hide-ui=1"
+      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=740-562&p=f&scaling=min-zoom&content-scaling=fixed&page-id=1%3A11550&starting-point-node-id=740%3A562&embed-host=share&hide-ui=1"
     },
     "路線擁擠程度": {
       title: "路線擁擠程度",
@@ -61,7 +61,7 @@ function Demo() {
         "歷史數據分析"
       ],
       conclusion: "避開人潮高峰，選擇最佳出行時機，享受舒適的捷運體驗。",
-      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=166-3193&p=f&scaling=scale-down&content-scaling=fixed&page-id=1%3A12929&starting-point-node-id=159%3A2392&embed-host=share&hide-ui=1"
+      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=166-3193&p=f&scaling=min-zoom&content-scaling=fixed&page-id=1%3A12929&starting-point-node-id=159%3A2392&embed-host=share&hide-ui=1"
     },
     "GO優惠": {
       title: "GO優惠",
@@ -106,7 +106,7 @@ function Demo() {
       // iframe載入後再等待4秒讓prototype完全載入
       const timer = setTimeout(() => {
         setShowLoading(false);
-      }, 2500);
+      }, 3000);
 
       return () => clearTimeout(timer);
     }
