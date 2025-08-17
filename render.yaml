@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: metro-ai-assistant-api
+    env: python
+    buildCommand: pip install -r api/requirements.txt
+    startCommand: cd api && uvicorn main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false  # 你需要在 Render Dashboard 中手動設定這個值
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+    healthCheckPath: /health

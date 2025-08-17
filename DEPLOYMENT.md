@@ -1,6 +1,8 @@
-# Metro AI Assistant - Vercel 部署指南
+# Metro AI Assistant - 分離式部署指南
 
-這個指南將幫助你將台北捷運智能助手部署到 Vercel 平台。
+這個指南將幫助你將台北捷運智能助手進行前後端分離部署：
+- **前端**: Vercel (React + Vite)
+- **後端**: Render (Python FastAPI)
 
 ## 📋 部署前檢查清單
 
@@ -8,14 +10,14 @@
 ```
 metro-ai-assistant/
 ├── api/
-│   ├── index.py          # ✅ Vercel Serverless Function 入口點
-│   ├── main.py           # 🔸 原始 FastAPI 檔案 (保留作為參考)
+│   ├── main.py           # ✅ FastAPI 後端主檔案
 │   └── requirements.txt  # ✅ Python 依賴
 ├── src/                  # ✅ React 前端源碼
 ├── dist/                 # ✅ 建置後的前端檔案
 ├── package.json          # ✅ Node.js 依賴和腳本
-├── vercel.json           # ✅ Vercel 部署配置
-├── vite.config.js        # ✅ Vite 配置 (含 API 代理)
+├── vercel.json           # ✅ Vercel 前端部署配置
+├── render.yaml           # ✅ Render 後端部署配置
+├── vite.config.js        # ✅ Vite 配置
 └── env.example           # ✅ 環境變數範例
 ```
 
@@ -27,7 +29,9 @@ metro-ai-assistant/
 
 ## 🚀 部署步驟
 
-### 步驟 1: 準備 Git 存儲庫
+### 第一部分：後端部署到 Render
+
+#### 步驟 1: 準備 Git 存儲庫
 
 ```bash
 # 確保你在專案根目錄
@@ -40,16 +44,48 @@ git init
 git add .
 
 # 提交變更
-git commit -m "準備 Vercel 部署配置"
+git commit -m "準備分離式部署配置"
 
 # 推送到 GitHub（如果你有 GitHub 存儲庫）
 git remote add origin https://github.com/你的用戶名/metro-ai-assistant.git
 git push -u origin main
 ```
 
-### 步驟 2: 部署到 Vercel
+#### 步驟 2: 在 Render 部署後端
 
-#### 方法 A: 使用 Vercel CLI（推薦）
+1. 前往 [Render Dashboard](https://render.com/dashboard)
+2. 點擊 "New" > "Web Service"
+3. 連接你的 GitHub 存儲庫
+4. 設定服務：
+   - **Name**: `metro-ai-assistant-api`
+   - **Environment**: `Python 3`
+   - **Build Command**: `pip install -r api/requirements.txt`
+   - **Start Command**: `cd api && uvicorn main:app --host 0.0.0.0 --port $PORT`
+   - **Plan**: `Free` (或根據需要選擇)
+
+#### 步驟 3: 設定 Render 環境變數
+
+在 Render 服務設定中：
+1. 前往 "Environment" 標籤
+2. 添加環境變數：
+   - **Key**: `OPENAI_API_KEY`
+   - **Value**: `你的OpenAI API金鑰`
+
+#### 步驟 4: 部署並測試後端
+
+部署完成後，你的 API 將在以下地址可用：
+```
+https://metro-sense.onrender.com
+```
+
+測試健康檢查：
+```
+GET https://metro-sense.onrender.com/health
+```
+
+### 第二部分：前端部署到 Vercel
+
+#### 步驟 5: 部署前端到 Vercel
 
 ```bash
 # 安裝 Vercel CLI（如果尚未安裝）
@@ -58,38 +94,21 @@ npm install -g vercel
 # 登入 Vercel
 vercel login
 
-# 部署專案
-vercel
-
-# 按照提示進行：
-# - 設定專案名稱
-# - 選擇團隊（如果有）
-# - 確認設定
+# 部署專案（僅前端）
+vercel --prod
 ```
 
-#### 方法 B: 使用 Vercel Dashboard
-
+或使用 Vercel Dashboard：
 1. 前往 [Vercel Dashboard](https://vercel.com/dashboard)
 2. 點擊 "Import Project"
 3. 從 GitHub 匯入你的存儲庫
-4. Vercel 會自動檢測配置
+4. Vercel 會自動檢測為 React 專案
 
-### 步驟 3: 設定環境變數
+#### 步驟 6: 確認部署成功
 
-在 Vercel Dashboard 中：
-
-1. 前往你的專案設定
-2. 點擊 "Settings" > "Environment Variables"
-3. 添加以下環境變數：
-   - **Name**: `OPENAI_API_KEY`
-   - **Value**: `你的OpenAI API金鑰`
-   - **Environment**: `Production`, `Preview`, `Development` (全選)
-
-### 步驟 4: 重新部署
-
-設定環境變數後，觸發重新部署：
-```bash
-vercel --prod
+前端將部署在 Vercel 提供的域名，例如：
+```
+https://metro-sense-xxx.vercel.app
 ```
 
 ## 🔧 配置說明

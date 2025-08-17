@@ -33,7 +33,12 @@ app = FastAPI(
 # CORS 設定
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 在生產環境中應該設定具體的域名
+    allow_origins=[
+        "http://localhost:5173",  # 本地開發
+        "http://localhost:3000",  # 本地開發替代端口
+        "https://*.vercel.app",   # Vercel 部署域名
+        "https://metro-sense-*.vercel.app",  # 你的 Vercel 專案
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

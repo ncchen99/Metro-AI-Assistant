@@ -2,11 +2,10 @@
  * API Service - 呼叫後端 API 的統一服務
  */
 
-// API 基本 URL - 如果在本地開發可以改為 http://localhost:8000 (Python FastAPI)
-// 生產環境會自動使用相對路徑
+// API 基本 URL - 根據環境自動切換
 const API_BASE_URL = process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8000'  // Python FastAPI 開發伺服器
-    : '';  // 生產環境使用相對路徑
+    ? 'http://localhost:8000'  // 本地開發: Python FastAPI 開發伺服器
+    : 'https://metro-sense.onrender.com';  // 生產環境: Render 後端
 
 /**
  * 健康檢查 API
