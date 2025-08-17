@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
 
 function Home() {
+  const navigate = useNavigate();
   const [tooltip, setTooltip] = useState({ show: false, text: '', x: 0, y: 0 });
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [shakeIcon, setShakeIcon] = useState(null);
 
   const handleMouseEnter = (featureName, event) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -18,6 +21,26 @@ function Home() {
 
   const handleMouseLeave = () => {
     setTooltip({ show: false, text: '', x: 0, y: 0 });
+  };
+
+  // 處理圖標點擊事件
+  const handleIconClick = (featureName) => {
+    // 有功能的圖標
+    const functionalIcons = ["主頁", "捷運路線", "捷運小幫手", "路線擁擠程度", "GO優惠", "捷運點", "AI助理"];
+
+    if (functionalIcons.includes(featureName)) {
+      if (featureName === "主頁") {
+        navigate("/demo/main");
+      } else if (featureName === "AI助理") {
+        navigate("/ai-assistant");
+      } else {
+        navigate(`/demo/${encodeURIComponent(featureName)}`);
+      }
+    } else {
+      // 沒有功能的圖標，觸發搖晃動畫
+      setShakeIcon(featureName);
+      setTimeout(() => setShakeIcon(null), 1000); // 1秒後清除搖晃狀態
+    }
   };
 
   // 全螢幕功能
@@ -78,86 +101,110 @@ function Home() {
           <img
             src="/images/捷運路線.png"
             alt="Decorative floating icon"
-            className={`${styles.icon} ${styles.icon1}`}
+            className={`${styles.icon} ${styles.icon1} ${shakeIcon === "捷運路線" ? styles.shake : ""}`}
             onMouseEnter={(e) => handleMouseEnter("捷運路線", e)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleIconClick("捷運路線")}
+            style={{ cursor: 'pointer' }}
           />
           <img
             src="/images/動態消息.png"
             alt="Decorative floating icon"
-            className={`${styles.icon} ${styles.icon2}`}
+            className={`${styles.icon} ${styles.icon2} ${shakeIcon === "動態消息" ? styles.shake : ""}`}
             onMouseEnter={(e) => handleMouseEnter("動態消息", e)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleIconClick("動態消息")}
+            style={{ cursor: 'pointer' }}
           />
           <img
             src="/images/下車提醒.png"
             alt="Decorative floating icon"
-            className={`${styles.icon} ${styles.icon3}`}
+            className={`${styles.icon} ${styles.icon3} ${shakeIcon === "下車提醒" ? styles.shake : ""}`}
             onMouseEnter={(e) => handleMouseEnter("下車提醒", e)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleIconClick("下車提醒")}
+            style={{ cursor: 'pointer' }}
           />
           <img
             src="/images/更多功能.png"
             alt="Decorative floating icon"
-            className={`${styles.icon} ${styles.icon4}`}
+            className={`${styles.icon} ${styles.icon4} ${shakeIcon === "更多功能" ? styles.shake : ""}`}
             onMouseEnter={(e) => handleMouseEnter("更多功能", e)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleIconClick("更多功能")}
+            style={{ cursor: 'pointer' }}
           />
           <img
             src="/images/捷運小幫手.png"
             alt="Decorative floating icon"
-            className={`${styles.icon} ${styles.icon5}`}
+            className={`${styles.icon} ${styles.icon5} ${shakeIcon === "捷運小幫手" ? styles.shake : ""}`}
             onMouseEnter={(e) => handleMouseEnter("捷運小幫手", e)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleIconClick("捷運小幫手")}
+            style={{ cursor: 'pointer' }}
           />
           <img
             src="/images/我的票券.png"
             alt="Decorative floating icon"
-            className={`${styles.icon} ${styles.icon6}`}
+            className={`${styles.icon} ${styles.icon6} ${shakeIcon === "我的票券" ? styles.shake : ""}`}
             onMouseEnter={(e) => handleMouseEnter("我的票券", e)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleIconClick("我的票券")}
+            style={{ cursor: 'pointer' }}
           />
           <img
             src="/images/主頁.png"
             alt="Decorative floating icon"
-            className={`${styles.icon} ${styles.icon7}`}
+            className={`${styles.icon} ${styles.icon7} ${shakeIcon === "主頁" ? styles.shake : ""}`}
             onMouseEnter={(e) => handleMouseEnter("主頁", e)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleIconClick("主頁")}
+            style={{ cursor: 'pointer' }}
           />
           <img
             src="/images/GO優惠.png"
             alt="Decorative floating icon"
-            className={`${styles.icon} ${styles.icon8}`}
+            className={`${styles.icon} ${styles.icon8} ${shakeIcon === "GO優惠" ? styles.shake : ""}`}
             onMouseEnter={(e) => handleMouseEnter("GO優惠", e)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleIconClick("GO優惠")}
+            style={{ cursor: 'pointer' }}
           />
           <img
             src="/images/AI助理.png"
             alt="Decorative floating icon"
-            className={`${styles.icon} ${styles.icon9}`}
+            className={`${styles.icon} ${styles.icon9} ${shakeIcon === "AI助理" ? styles.shake : ""}`}
             onMouseEnter={(e) => handleMouseEnter("AI助理", e)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleIconClick("AI助理")}
+            style={{ cursor: 'pointer' }}
           />
           <img
             src="/images/路線擁擠程度.png"
             alt="Decorative floating icon"
-            className={`${styles.icon} ${styles.icon10}`}
+            className={`${styles.icon} ${styles.icon10} ${shakeIcon === "路線擁擠程度" ? styles.shake : ""}`}
             onMouseEnter={(e) => handleMouseEnter("路線擁擠程度", e)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleIconClick("路線擁擠程度")}
+            style={{ cursor: 'pointer' }}
           />
           <img
             src="/images/我的帳戶.png"
             alt="Decorative floating icon"
-            className={`${styles.icon} ${styles.icon11}`}
+            className={`${styles.icon} ${styles.icon11} ${shakeIcon === "我的帳戶" ? styles.shake : ""}`}
             onMouseEnter={(e) => handleMouseEnter("我的帳戶", e)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleIconClick("我的帳戶")}
+            style={{ cursor: 'pointer' }}
           />
           <img
             src="/images/捷運點.png"
             alt="Decorative floating M logo icon"
-            className={`${styles.icon} ${styles.icon12}`}
+            className={`${styles.icon} ${styles.icon12} ${shakeIcon === "捷運點" ? styles.shake : ""}`}
             onMouseEnter={(e) => handleMouseEnter("捷運點", e)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleIconClick("捷運點")}
+            style={{ cursor: 'pointer' }}
           />
         </div>
 

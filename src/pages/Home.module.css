@@ -262,3 +262,140 @@
         transform: translateY(-50%) scale(1);
     }
 }
+
+/* 搖晃動畫 */
+.shake {
+    animation: shake 1s ease-in-out;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+/* 為帶有旋轉的圖標添加特殊的搖晃動畫 */
+.icon7.shake {
+    animation: shakeRotated7 1s ease-in-out;
+}
+
+.icon9.shake {
+    animation: shakeRotated9 1s ease-in-out;
+}
+
+.icon11.shake {
+    animation: shakeRotated11 1s ease-in-out;
+}
+
+.icon12.shake {
+    animation: shakeRotated12 1s ease-in-out;
+}
+
+@keyframes shakeRotated7 {
+
+    0%,
+    100% {
+        transform: rotate(-21.93deg) translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: rotate(-21.93deg) translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: rotate(-21.93deg) translateX(5px);
+    }
+}
+
+@keyframes shakeRotated9 {
+
+    0%,
+    100% {
+        transform: rotate(9.55deg) translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: rotate(9.55deg) translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: rotate(9.55deg) translateX(5px);
+    }
+}
+
+@keyframes shakeRotated11 {
+
+    0%,
+    100% {
+        transform: rotate(-25.14deg) translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: rotate(-25.14deg) translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: rotate(-25.14deg) translateX(5px);
+    }
+}
+
+@keyframes shakeRotated12 {
+
+    0%,
+    100% {
+        transform: rotate(13.97deg) translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: rotate(13.97deg) translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: rotate(13.97deg) translateX(5px);
+    }
+}

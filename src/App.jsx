@@ -10,6 +10,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/ai-assistant" element={<AIAssistant />} />
         <Route path="/demo" element={<Demo />} />
+        <Route path="/demo/:feature" element={<Demo />} />
       </Routes>
     </Router>
   )
