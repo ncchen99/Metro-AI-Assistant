@@ -3,7 +3,7 @@ import styles from "./Home.module.css";
 
 function Home() {
   return (
-    <section id="main-visual">
+    <section id="main-visual" className={styles.homeSection}>
       <div className={styles.mainContainer}>
         <img
           src="/images/a7c955cd739d7fa1381c047fc68c8b4cdbd97586.png"
