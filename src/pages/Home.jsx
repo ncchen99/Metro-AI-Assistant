@@ -76,12 +76,12 @@ function Home() {
       <section id="main-visual" className={styles.homeSection}>
         <div className={styles.mainContainer}>
           <img
-            src="/images/background.png"
+            src="/images/background.webp"
             alt="Abstract blue wave background with the word METRO"
             className={styles.backgroundImage}
           />
           <img
-            src="/images/train.png"
+            src="/images/train.webp"
             alt="Abstract blue wave with the word TAIPEI"
             className={styles.taipeiImage}
           />
@@ -91,7 +91,7 @@ function Home() {
             <div className={styles.glassPane}></div>
             <div className={styles.modelKit}>
               <img
-                src="/images/bone.png"
+                src="/images/bone.webp"
                 alt="Plastic model kit of metro icons"
                 className={styles.modelKitBaseImg}
               />
@@ -105,7 +105,7 @@ function Home() {
           {/* Floating icons */}
           <div className={styles.floatingIcons}>
             <img
-              src="/images/捷運路線.png"
+              src="/images/捷運路線.webp"
               alt="Decorative floating icon"
               className={`${styles.icon} ${styles.icon1} ${shakeIcon === "捷運路線" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("捷運路線", e)}
@@ -114,7 +114,7 @@ function Home() {
               style={{ cursor: 'pointer' }}
             />
             <img
-              src="/images/動態消息.png"
+              src="/images/動態消息.webp"
               alt="Decorative floating icon"
               className={`${styles.icon} ${styles.icon2} ${shakeIcon === "動態消息" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("動態消息", e)}
@@ -123,7 +123,7 @@ function Home() {
               style={{ cursor: 'pointer' }}
             />
             <img
-              src="/images/下車提醒.png"
+              src="/images/下車提醒.webp"
               alt="Decorative floating icon"
               className={`${styles.icon} ${styles.icon3} ${shakeIcon === "下車提醒" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("下車提醒", e)}
@@ -132,7 +132,7 @@ function Home() {
               style={{ cursor: 'pointer' }}
             />
             <img
-              src="/images/更多功能.png"
+              src="/images/更多功能.webp"
               alt="Decorative floating icon"
               className={`${styles.icon} ${styles.icon4} ${shakeIcon === "更多功能" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("更多功能", e)}
@@ -141,7 +141,7 @@ function Home() {
               style={{ cursor: 'pointer' }}
             />
             <img
-              src="/images/捷運小幫手.png"
+              src="/images/捷運小幫手.webp"
               alt="Decorative floating icon"
               className={`${styles.icon} ${styles.icon5} ${shakeIcon === "捷運小幫手" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("捷運小幫手", e)}
@@ -150,7 +150,7 @@ function Home() {
               style={{ cursor: 'pointer' }}
             />
             <img
-              src="/images/我的票券.png"
+              src="/images/我的票券.webp"
               alt="Decorative floating icon"
               className={`${styles.icon} ${styles.icon6} ${shakeIcon === "我的票券" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("我的票券", e)}
@@ -159,7 +159,7 @@ function Home() {
               style={{ cursor: 'pointer' }}
             />
             <img
-              src="/images/主頁.png"
+              src="/images/主頁.webp"
               alt="Decorative floating icon"
               className={`${styles.icon} ${styles.icon7} ${shakeIcon === "主頁" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("主頁", e)}
@@ -168,7 +168,7 @@ function Home() {
               style={{ cursor: 'pointer' }}
             />
             <img
-              src="/images/GO優惠.png"
+              src="/images/GO優惠.webp"
               alt="Decorative floating icon"
               className={`${styles.icon} ${styles.icon8} ${shakeIcon === "GO優惠" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("GO優惠", e)}
@@ -177,7 +177,7 @@ function Home() {
               style={{ cursor: 'pointer' }}
             />
             <img
-              src="/images/AI助理.png"
+              src="/images/AI助理.webp"
               alt="Decorative floating icon"
               className={`${styles.icon} ${styles.icon9} ${shakeIcon === "AI助理" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("AI助理", e)}
@@ -186,7 +186,7 @@ function Home() {
               style={{ cursor: 'pointer' }}
             />
             <img
-              src="/images/路線擁擠程度.png"
+              src="/images/路線擁擠程度.webp"
               alt="Decorative floating icon"
               className={`${styles.icon} ${styles.icon10} ${shakeIcon === "路線擁擠程度" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("路線擁擠程度", e)}
@@ -195,7 +195,7 @@ function Home() {
               style={{ cursor: 'pointer' }}
             />
             <img
-              src="/images/我的帳戶.png"
+              src="/images/我的帳戶.webp"
               alt="Decorative floating icon"
               className={`${styles.icon} ${styles.icon11} ${shakeIcon === "我的帳戶" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("我的帳戶", e)}
@@ -204,7 +204,7 @@ function Home() {
               style={{ cursor: 'pointer' }}
             />
             <img
-              src="/images/捷運點.png"
+              src="/images/捷運點.webp"
               alt="Decorative floating M logo icon"
               className={`${styles.icon} ${styles.icon12} ${shakeIcon === "捷運點" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("捷運點", e)}
