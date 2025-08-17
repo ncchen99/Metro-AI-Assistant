@@ -13,3 +13,6 @@ tools/
 
 # .env
 .env
+.env.local
+.env.build
+.vercel
