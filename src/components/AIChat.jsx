@@ -10,7 +10,8 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
     // 滾動指示器狀態
     const [scrollIndicator, setScrollIndicator] = useState({
         position: 0,
-        visible: false
+        visible: false,
+        trackHeight: 0
     });
 
     useEffect(() => {
@@ -29,28 +30,31 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
     // 處理滾動事件，更新滾動指示器位置
     const handleScroll = () => {
         if (!scrollContainerRef.current) return;
-        
+
         const container = scrollContainerRef.current;
         const scrollTop = container.scrollTop;
         const scrollHeight = container.scrollHeight;
         const clientHeight = container.clientHeight;
         const maxScrollTop = scrollHeight - clientHeight;
-        
+
         // 計算滾動百分比
         const scrollPercentage = maxScrollTop > 0 ? scrollTop / maxScrollTop : 0;
-        
-        // 計算滾動指示器位置 (48px 是軌道高度，24px 是指示器高度)
-        const trackHeight = 48; // 12 * 4 (h-12)
-        const indicatorHeight = 24; // 6 * 4 (h-6)
+
+        // 計算滾動指示器位置 (使用容器高度減去上下padding作為軌道高度)
+        const containerHeight = clientHeight;
+        const trackPadding = 16; // 上下各8px的padding
+        const trackHeight = containerHeight - (trackPadding * 2);
+        const indicatorHeight = 30; // 指示器高度保持24px
         const maxIndicatorPosition = trackHeight - indicatorHeight;
         const indicatorPosition = scrollPercentage * maxIndicatorPosition;
-        
+
         // 判斷是否需要顯示滾動指示器（當內容超出可視區域時）
         const shouldShowIndicator = scrollHeight > clientHeight;
-        
+
         setScrollIndicator({
             position: indicatorPosition,
-            visible: shouldShowIndicator
+            visible: shouldShowIndicator,
+            trackHeight: trackHeight
         });
     };
 
@@ -61,7 +65,7 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
             container.addEventListener('scroll', handleScroll);
             // 初始化滾動指示器
             handleScroll();
-            
+
             return () => {
                 container.removeEventListener('scroll', handleScroll);
             };
@@ -106,7 +110,7 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
         <div className="flex items-center gap-1 ml-2 opacity-0 group-hover:opacity-100 transition-opacity">
             {/* Bookmark Icon */}
             <div className="w-4 h-4 flex items-center justify-center cursor-pointer hover:bg-white/20 rounded-full transition-colors">
-                <svg className="w-4 h-4" stroke="#4088F4" strokeWidth="1.5" fill="none" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" stroke={mode === 'work' ? '#4088F4' : '#38c693'} strokeWidth="1.5" fill="none" viewBox="0 0 24 24">
                     <path d="M2 3a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z" />
                     <path fillRule="evenodd" d="M2 7.5h16l-.811 7.71a2 2 0 0 1-1.99 1.79H4.802a2 2 0 0 1-1.99-1.79L2 7.5ZM7 11a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1Z" clipRule="evenodd" />
                 </svg>
@@ -114,14 +118,14 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
 
             {/* Copy Icon */}
             <div className="w-4 h-4 flex items-center justify-center cursor-pointer hover:bg-white/20 rounded-full transition-colors">
-                <svg className="w-4 h-4" stroke="#4088F4" strokeWidth="1.5" fill="none" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" stroke={mode === 'work' ? '#4088F4' : '#38c693'} strokeWidth="1.5" fill="none" viewBox="0 0 24 24">
                     <path fillRule="evenodd" d="M13.887 3.182c.396.037.79.08 1.183.128C16.194 3.45 17 4.414 17 5.517V16.75A2.25 2.25 0 0 1 14.75 19h-9.5A2.25 2.25 0 0 1 3 16.75V5.517c0-1.103.806-2.068 1.93-2.207.393-.048.787-.09 1.183-.128A3.001 3.001 0 0 1 9 1h2c1.373 0 2.531.923 2.887 2.182ZM7.5 4A1.5 1.5 0 0 1 9 2.5h2A1.5 1.5 0 0 1 12.5 4v.5h-5V4Z" clipRule="evenodd" />
                 </svg>
             </div>
 
             {/* Share Icon */}
             <div className="w-4 h-4 flex items-center justify-center cursor-pointer hover:bg-white/20 rounded-full transition-colors">
-                <svg className="w-4 h-4" stroke="#4088F4" strokeWidth="1.5" fill="none" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" stroke={mode === 'work' ? '#4088F4' : '#38c693'} strokeWidth="1.5" fill="none" viewBox="0 0 24 24">
                     <path d="M13 4.5a2.5 2.5 0 1 1 .702 1.737L6.97 9.604a2.518 2.518 0 0 1 0 .792l6.733 3.367a2.5 2.5 0 1 1-.671 1.341l-6.733-3.367a2.5 2.5 0 1 1 0-3.475l6.733-3.366A2.52 2.52 0 0 1 13 4.5Z" />
                 </svg>
             </div>
@@ -144,7 +148,8 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
                             <AIAvatar />
                             <div className="flex flex-col max-w-[220px] items-start">
                                 <div className="relative px-3 py-2 rounded-lg shadow-[inset_0_1px_2px_0_rgba(0,0,0,0.2),inset_0_-1px_2px_0_rgba(255,255,255,0.4)] bg-chat-bg backdrop-blur-sm rounded-tl-sm">
-                                    <div className="text-[12px] font-medium tracking-[1.2px] leading-[1.2] text-[#007AB0]">
+                                    <div className={`text-[12px] font-medium tracking-[1.2px] leading-[1.2] ${mode === 'work' ? 'text-[#007AB0]' : 'text-[#31A97DFF]'
+                                        }`}>
                                         <ReactMarkdown
                                             rehypePlugins={[rehypeSanitize]}
                                             components={{
@@ -175,9 +180,9 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
                             <div className={`flex flex-col max-w-[220px] ${message.type === 'user' ? 'items-end' : 'items-start'}`}>
                                 <div className={`relative px-3 py-2 rounded-lg shadow-[inset_0_1px_2px_0_rgba(0,0,0,0.2),inset_0_-1px_2px_0_rgba(255,255,255,0.4)] ${message.type === 'ai'
                                     ? 'bg-chat-bg backdrop-blur-sm rounded-tl-sm'
-                                    : 'bg-white/20 backdrop-blur-sm rounded-tr-sm'
+                                    : 'bg-white/20 backdrop-blur-sm rounded-tr-sm mr-2  '
                                     }`}>
-                                    <div className={`text-[12px] font-medium tracking-[1.2px] leading-[1.2] ${message.type === 'ai' ? 'text-[#007AB0]' : 'text-text-gray'
+                                    <div className={`text-[12px] font-medium tracking-[1.2px] leading-[1.2] ${message.type === 'ai' ? mode === 'work' ? 'text-[#007AB0]' : 'text-[#31A97DFF]' : 'text-text-gray'
                                         }`}>
                                         <ReactMarkdown
                                             rehypePlugins={[rehypeSanitize]}
@@ -219,9 +224,23 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
                 </div>
 
                 {/* Scroll Indicator */}
-                <div className="absolute right-2 bottom-4 w-1 h-12 bg-gray-500/30 rounded-full z-20">
-                    <div className="w-1 h-6 bg-gray-500/60 rounded-full transition-all duration-300"></div>
-                </div>
+                {scrollIndicator.visible && scrollIndicator.trackHeight > 0 && (
+                    <div
+                        className="absolute right-2 top-2 w-1 bg-white/30 rounded-full z-20"
+                        style={{
+                            height: `${scrollIndicator.trackHeight}px`,
+                            marginTop: '8px',
+                            marginBottom: '8px'
+                        }}
+                    >
+                        <div
+                            className={`w-1 h-10 ${mode === 'work' ? 'bg-[#268EBB]' : 'bg-[#38c693]'} rounded-full transition-all duration-150`}
+                            style={{
+                                transform: `translateY(${scrollIndicator.position}px)`
+                            }}
+                        ></div>
+                    </div>
+                )}
             </div>
         </div>
     )
