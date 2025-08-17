@@ -4,6 +4,7 @@
 node_modules/
 .DS_Store
 package-lock.json
+dist/
 
 # vite
 .vite/
@@ -12,6 +13,7 @@ package-lock.json
 tools/
 
 # .env
+/api/.env
 .env
 .env.local
 .env.build

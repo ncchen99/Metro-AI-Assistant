@@ -110,7 +110,7 @@ function AIAssistant() {
         }
     }, []);
 
-    // 處理文字訊息發送
+    // 處理文字訊息發送 (使用串流)
     const handleSendMessage = async (text) => {
         if (!text.trim()) return;
 
@@ -126,20 +126,51 @@ function AIAssistant() {
         setInputText('');
         setIsLoading(true);
 
-        try {
-            // 呼叫 AI API
-            const response = await askAI(text.trim(), mode);
+        // 使用串流 AI API
+        let aiMessage = null;
 
-            if (response.success) {
-                // 添加 AI 回覆
-                const aiMessage = {
-                    id: Date.now() + 1,
-                    type: 'ai',
-                    content: response.data.answer,
-                    timestamp: new Date()
-                };
-                setMessages(prev => [...prev, aiMessage]);
-            } else {
+        const callbacks = {
+            onStatus: (message) => {
+                // 可以在這裡顯示狀態，例如 "AI正在思考..."
+                console.log('AI Status:', message);
+            },
+
+            onAIChunk: (chunk) => {
+                if (!aiMessage) {
+                    // 創建新的AI訊息
+                    aiMessage = {
+                        id: Date.now() + 1,
+                        type: 'ai',
+                        content: chunk,
+                        timestamp: new Date()
+                    };
+                    setCurrentAIMessage(aiMessage);
+                    setMessages(prev => [...prev, aiMessage]);
+                } else {
+                    // 更新現有的AI訊息
+                    aiMessage.content += chunk;
+                    setCurrentAIMessage({ ...aiMessage });
+                    setMessages(prev =>
+                        prev.map(msg =>
+                            msg.id === aiMessage.id
+                                ? { ...msg, content: aiMessage.content }
+                                : msg
+                        )
+                    );
+                }
+            },
+
+            onComplete: (data) => {
+                setIsLoading(false);
+                setCurrentAIMessage(null);
+                console.log('AI completed:', data);
+            },
+
+            onError: (error, details) => {
+                console.error('AI stream error:', error, details);
+                setIsLoading(false);
+                setCurrentAIMessage(null);
+
                 // 添加錯誤訊息
                 const errorMessage = {
                     id: Date.now() + 1,
@@ -149,17 +180,12 @@ function AIAssistant() {
                 };
                 setMessages(prev => [...prev, errorMessage]);
             }
+        };
+
+        try {
+            await askAI(text.trim(), mode, callbacks);
         } catch (error) {
-            console.error('Send message error:', error);
-            const errorMessage = {
-                id: Date.now() + 1,
-                type: 'ai',
-                content: '抱歉，我遇到了一些問題，請稍後再試。',
-                timestamp: new Date()
-            };
-            setMessages(prev => [...prev, errorMessage]);
-        } finally {
-            setIsLoading(false);
+            callbacks.onError(error.message);
         }
     };
 
@@ -410,6 +436,7 @@ function AIAssistant() {
                                         mode={mode}
                                         messages={messages}
                                         isLoading={isLoading}
+                                        currentAIMessage={currentAIMessage}
                                     />
                                     <BottomNavigation />
 

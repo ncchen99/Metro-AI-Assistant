@@ -1,24 +1,17 @@
 {
-    "functions": {
-        "api/stt.js": {
-            "maxDuration": 30
-        },
-        "api/ask.js": {
-            "maxDuration": 30
-        },
-        "api/tts.js": {
-            "maxDuration": 30
-        },
-        "api/voice-ask.js": {
-            "maxDuration": 60
+    "builds": [
+        {
+            "src": "main.py",
+            "use": "@vercel/python"
         }
-    },
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "main.py"
+        }
+    ],
     "env": {
-        "OPENAI_API_KEY": "@openai_api_key"
-    },
-    "build": {
-        "env": {
-            "OPENAI_API_KEY": "@openai_api_key"
-        }
+        "PYTHONPATH": "."
     }
 }

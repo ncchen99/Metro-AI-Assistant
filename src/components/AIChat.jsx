@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import rehypeSanitize from 'rehype-sanitize'
 
-const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
+const AIChat = ({ mode = 'work', messages = [], isLoading = false, currentAIMessage = null }) => {
     // 自動滾動到底部
     const messagesEndRef = useRef(null);
     const scrollContainerRef = useRef(null);
@@ -216,8 +216,8 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
                         </div>
                     ))}
 
-                    {/* Loading Message */}
-                    {isLoading && <LoadingMessage />}
+                    {/* Loading Message - 只有在沒有正在接收AI訊息時才顯示 */}
+                    {isLoading && !currentAIMessage && <LoadingMessage />}
 
                     {/* 滾動錨點 */}
                     <div ref={messagesEndRef} />

@@ -79,7 +79,7 @@ const SearchBar = ({
             onChange={(e) => onInputChange(e.target.value)}
             onKeyPress={handleKeyPress}
             disabled={isLoading || isRecording || isProcessingVoice}
-            className="w-full h-full bg-transparent rounded-full px-4 py-2 text-[#424242FF] text-sm font-bold text-text-muted tracking-[0.8px] placeholder-text-muted border-0 outline-none disabled:opacity-70"
+            className="w-full h-full bg-transparent rounded-full px-4 py-2 text-sm font-bold text-gray-700 tracking-[0.8px] placeholder-text-muted border-0 outline-none disabled:opacity-70"
           />
 
           {/* Microphone Icon or Loading Spinner */}
