@@ -38,6 +38,8 @@ app.add_middleware(
         "http://localhost:3000",  # 本地開發替代端口
         "https://*.vercel.app",   # Vercel 部署域名
         "https://metro-sense-*.vercel.app",  # 你的 Vercel 專案
+        "https://metro-sense.vercel.app",  # 你的特定 Vercel 域名
+        "https://metro-sense.onrender.com",  # Render 後端域名 (如果需要自己呼叫自己)
     ],
     allow_credentials=True,
     allow_methods=["*"],
