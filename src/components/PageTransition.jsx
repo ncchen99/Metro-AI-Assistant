@@ -25,16 +25,14 @@ const PageTransition = ({ children, className = "" }) => {
         },
         out: {
             opacity: 0,
-            scale: 2,
-            x: clickPosition.x - windowSize.width / 2,
-            y: clickPosition.y - windowSize.height / 2,
+            scale: 1,
         }
     }
 
     const pageTransition = {
         type: 'tween',
         ease: [0.25, 0.1, 0.25, 1],
-        duration: 0.5
+        duration: 0.4
     }
 
     return (
@@ -53,41 +51,26 @@ const PageTransition = ({ children, className = "" }) => {
 
             {/* 動畫遮罩層 */}
             <AnimatePresence>
-                {isTransitioning && (
-                    <>
-                        {/* 收縮動畫層 */}
-                        {animationPhase === 'shrinking' && (
-                            <motion.div
-                                className="fixed inset-0 z-[9999] pointer-events-none"
-                                style={{
-                                    background: `radial-gradient(circle at ${clickPosition.x}px ${clickPosition.y}px, transparent 0%, rgba(0,0,0,0.8) 50%)`
-                                }}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.3 }}
-                            />
-                        )}
-
-                        {/* 白色過渡層 */}
-                        {(animationPhase === 'white' || animationPhase === 'expanding') && (
-                            <motion.div
-                                className="fixed inset-0 z-[9998] bg-white pointer-events-none"
-                                initial={{
-                                    clipPath: `circle(0px at ${clickPosition.x}px ${clickPosition.y}px)`
-                                }}
-                                animate={{
-                                    clipPath: animationPhase === 'white'
-                                        ? `circle(${Math.max(windowSize.width, windowSize.height)}px at ${clickPosition.x}px ${clickPosition.y}px)`
-                                        : `circle(0px at ${clickPosition.x}px ${clickPosition.y}px)`
-                                }}
-                                transition={{
-                                    duration: animationPhase === 'white' ? 0.15 : 0.5,
-                                    ease: [0.25, 0.1, 0.25, 1]
-                                }}
-                            />
-                        )}
-                    </>
+                {isTransitioning && (animationPhase === 'shrinking' || animationPhase === 'expanding') && (
+                    <motion.div
+                        className="fixed inset-0 z-[9999] pointer-events-none bg-white"
+                        initial={{
+                            clipPath: `circle(0px at ${clickPosition.x}px ${clickPosition.y}px)`,
+                            opacity: 0
+                        }}
+                        animate={{
+                            clipPath: `circle(${Math.max(windowSize.width, windowSize.height) * 1.2}px at ${clickPosition.x}px ${clickPosition.y}px)`,
+                            opacity: animationPhase === 'shrinking' ? 1 : 0
+                        }}
+                        exit={{
+                            opacity: 0,
+                            clipPath: `circle(${Math.max(windowSize.width, windowSize.height) * 1.2}px at ${clickPosition.x}px ${clickPosition.y}px)`
+                        }}
+                        transition={{
+                            duration: animationPhase === 'shrinking' ? 0.3 : 0.4,
+                            ease: [0.25, 0.1, 0.25, 1]
+                        }}
+                    />
                 )}
             </AnimatePresence>
         </>

@@ -13,7 +13,7 @@ export const useAnimation = () => {
 export const AnimationProvider = ({ children }) => {
     const [isTransitioning, setIsTransitioning] = useState(false)
     const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 })
-    const [animationPhase, setAnimationPhase] = useState('idle') // 'idle', 'shrinking', 'white', 'expanding'
+    const [animationPhase, setAnimationPhase] = useState('idle') // 'idle', 'shrinking', 'expanding'
 
     const startTransition = (event, callback) => {
         if (isTransitioning) return
@@ -26,21 +26,20 @@ export const AnimationProvider = ({ children }) => {
         setIsTransitioning(true)
         setAnimationPhase('shrinking')
 
-        // 第一階段：收縮到點擊位置 (300ms)
+        // 第一階段：白色遮罩覆蓋畫面 (300ms)
         setTimeout(() => {
-            setAnimationPhase('white')
+            if (callback) callback()
 
-            // 第二階段：白色過渡 (150ms)
+            // 延遲一點時間確保新頁面開始載入 (200ms)
             setTimeout(() => {
-                if (callback) callback()
                 setAnimationPhase('expanding')
 
-                // 第三階段：白色背景收縮，新頁面淡入 (500ms)
+                // 第二階段：白色遮罩淡出，新頁面淡入 (400ms)
                 setTimeout(() => {
                     setAnimationPhase('idle')
                     setIsTransitioning(false)
-                }, 500)
-            }, 150)
+                }, 400)
+            }, 200)
         }, 300)
     }
 
