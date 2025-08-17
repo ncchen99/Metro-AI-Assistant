@@ -3,19 +3,20 @@ import { useRef, useEffect } from 'react'
 const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
     // 自動滾動到底部
     const messagesEndRef = useRef(null);
+    const scrollContainerRef = useRef(null);
 
     useEffect(() => {
-        // 只有當有新訊息時才滾動，並且加入小延遲確保DOM更新完成
-        if (messages.length > 0) {
-            setTimeout(() => {
-                messagesEndRef.current?.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'end',
-                    inline: 'nearest'
-                });
-            }, 100);
+        // 只有當有新訊息時才滾動，並且使用更溫和的滾動方式
+        if (messages.length > 0 && scrollContainerRef.current) {
+            const container = scrollContainerRef.current;
+            const scrollHeight = container.scrollHeight;
+            const height = container.clientHeight;
+            const maxScrollTop = scrollHeight - height;
+
+            // 滾動到底部，但不強制
+            container.scrollTop = maxScrollTop;
         }
-    }, [messages.length, isLoading]);
+    }, [messages.length]);
 
     // Loading 動畫元件
     const LoadingMessage = () => (
@@ -83,7 +84,25 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
             <div className="w-[330px] h-[420px] rounded-[20px] bg-white/20 backdrop-blur-md shadow-[0_4px_8px_0_rgba(0,0,0,0.1),inset_2px_2px_4px_0_rgba(255,255,255,0.5),inset_-2px_-2px_4px_0_rgba(0,0,0,0.05)] relative mx-auto overflow-hidden">
 
                 {/* Messages Container - Scrollable */}
-                <div className="h-full overflow-y-auto px-4 py-4 space-y-4 scrollbar-hide flex flex-col">
+                <div
+                    ref={scrollContainerRef}
+                    className="h-full overflow-y-auto px-4 py-6 space-y-4 scrollbar-hide"
+                >
+                    {/* 預設歡迎訊息 - 只有在沒有其他訊息時顯示 */}
+                    {messages.length === 0 && (
+                        <div className="flex items-start gap-3 group">
+                            <AIAvatar />
+                            <div className="flex flex-col max-w-[220px] items-start">
+                                <div className="relative px-3 py-2 rounded-lg shadow-[inset_0_1px_2px_0_rgba(0,0,0,0.2),inset_0_-1px_2px_0_rgba(255,255,255,0.4)] bg-chat-bg backdrop-blur-sm rounded-tl-sm">
+                                    <span className="text-xs font-bold tracking-[1.2px] leading-[1.2] text-[#007AB0]">
+                                        我是AI助理，有什麼我能幫您的嗎？
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* 實際訊息 */}
                     {messages.map((message, index) => (
                         <div key={message.id} className={`flex items-start gap-3 group ${message.type === 'user' ? 'flex-row-reverse' : ''}`}>
                             {/* Avatar */}
@@ -114,7 +133,7 @@ const AIChat = ({ mode = 'work', messages = [], isLoading = false }) => {
                     {/* Loading Message */}
                     {isLoading && <LoadingMessage />}
 
-                    {/* Auto-scroll anchor */}
+                    {/* 滾動錨點 */}
                     <div ref={messagesEndRef} />
                 </div>
 
