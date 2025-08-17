@@ -1,0 +1,19 @@
+# 忽略後端相關檔案和資料夾
+api/
+render.yaml
+
+# 忽略開發和測試檔案
+*.log
+.env
+.env.local
+.env.production
+.env.staging
+
+# 忽略文檔檔案
+docs/
+*.md
+!README.md
+
+# 忽略工具和測試
+tools/
+test/
