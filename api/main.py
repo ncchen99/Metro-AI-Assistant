@@ -40,6 +40,8 @@ app.add_middleware(
         "https://metro-sense-*.vercel.app",  # 你的 Vercel 專案
         "https://metro-sense.vercel.app",  # 你的特定 Vercel 域名
         "https://metro-sense.onrender.com",  # Render 後端域名 (如果需要自己呼叫自己)
+        "https://metro-sense.fly.dev",  # Fly.io 部署域名
+        "https://*.fly.dev",  # Fly.io 域名通配符
     ],
     allow_credentials=True,
     allow_methods=["*"],
