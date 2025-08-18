@@ -16,13 +16,13 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # 複製 requirements 檔案
-COPY requirements.txt .
+COPY api/requirements.txt .
 
 # 安裝 Python 依賴
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 複製應用程式碼
-COPY . .
+COPY api/ .
 
 # 暴露端口 (Fly.io 預設使用 8080)
 EXPOSE 8080

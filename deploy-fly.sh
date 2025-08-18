@@ -32,7 +32,7 @@ fi
 echo "✅ 環境檢查完成"
 
 # 檢查是否已經有 Fly.io 應用程式
-if fly apps list | grep -q "metro-ai-assistant-api"; then
+if fly apps list | grep -q "metro-sense"; then
     echo "📦 應用程式已存在，執行部署..."
     fly deploy
 else
@@ -51,7 +51,7 @@ fi
 
 echo "✅ 部署完成！"
 echo "🌐 您的 API 現在可以在以下網址訪問："
-echo "   https://metro-ai-assistant-api.fly.dev"
+echo "   https://metro-sense.fly.dev"
 echo ""
 echo "🔧 有用的命令："
 echo "   fly logs                    # 查看日誌"
