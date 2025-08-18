@@ -2,19 +2,133 @@
  * API Service - 呼叫後端 API 的統一服務
  */
 
-// API 基本 URL - 根據環境自動切換
-const API_BASE_URL = process.env.NODE_ENV === 'development'
+// API 配置
+const PRIMARY_API_BASE_URL = process.env.NODE_ENV === 'development'
     ? 'http://localhost:8000'  // 本地開發: Python FastAPI 開發伺服器
-    : 'https://metro-sense.onrender.com';  // 生產環境: Render 後端
+    : 'https://metro-sense.fly.dev';  // 生產環境: Fly.io 後端 (主要)
+
+const FALLBACK_API_BASE_URL = 'https://metro-sense.onrender.com';  // 備用後端 URL
+
+// 快取選定的 API URL
+let selectedApiBaseUrl = null;
+let apiSelectionPromise = null;
+
+/**
+ * 檢查並選擇可用的 API 服務 (僅在啟動時執行一次)
+ * @returns {Promise<string>} 選定的 API 基礎 URL
+ */
+const selectAvailableApiService = async () => {
+    // 在開發環境直接使用本地服務
+    if (process.env.NODE_ENV === 'development') {
+        console.log('開發環境：使用本地服務', PRIMARY_API_BASE_URL);
+        return PRIMARY_API_BASE_URL;
+    }
+
+    try {
+        console.log('正在檢查主要後端服務可用性...');
+
+        // 快速檢查主要服務是否可用 (3秒超時)
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000);
+
+        const response = await fetch(`${PRIMARY_API_BASE_URL}/health`, {
+            signal: controller.signal,
+            method: 'GET'
+        });
+
+        clearTimeout(timeoutId);
+
+        if (response.ok) {
+            console.log('✅ 主要後端服務 (Fly.io) 可用:', PRIMARY_API_BASE_URL);
+            return PRIMARY_API_BASE_URL;
+        }
+    } catch (error) {
+        console.warn('⚠️ 主要後端服務不可用，原因:', error.message);
+    }
+
+    console.log('🔄 切換到備用後端服務 (Render):', FALLBACK_API_BASE_URL);
+    return FALLBACK_API_BASE_URL;
+};
+
+/**
+ * 取得選定的 API 基礎 URL (快取版本)
+ * @returns {Promise<string>} 選定的 API 基礎 URL
+ */
+const getSelectedApiBaseUrl = async () => {
+    // 如果已經選定了 URL，直接返回
+    if (selectedApiBaseUrl) {
+        return selectedApiBaseUrl;
+    }
+
+    // 如果正在選擇中，等待結果
+    if (apiSelectionPromise) {
+        return await apiSelectionPromise;
+    }
+
+    // 開始選擇 API 服務
+    apiSelectionPromise = selectAvailableApiService();
+    selectedApiBaseUrl = await apiSelectionPromise;
+
+    return selectedApiBaseUrl;
+};
+
+/**
+ * 建構完整的 API URL
+ * @param {string} endpoint - API 端點
+ * @returns {Promise<string>} 完整的 API URL
+ */
+const getApiUrl = async (endpoint) => {
+    const baseUrl = await getSelectedApiBaseUrl();
+    return `${baseUrl}${endpoint}`;
+};
+
+/**
+ * 重新選擇 API 服務 (當需要切換服務時使用)
+ */
+export const resetApiService = () => {
+    selectedApiBaseUrl = null;
+    apiSelectionPromise = null;
+    console.log('🔄 API 服務選擇已重置，下次調用時將重新選擇');
+};
+
+/**
+ * 預熱 API 服務選擇 (建議在應用啟動時調用)
+ * @returns {Promise<string>} 選定的 API 基礎 URL
+ */
+export const warmupApiService = async () => {
+    try {
+        const selectedUrl = await getSelectedApiBaseUrl();
+        console.log('🚀 API 服務預熱完成，選定服務:', selectedUrl);
+        return selectedUrl;
+    } catch (error) {
+        console.error('❌ API 服務預熱失敗:', error);
+        throw error;
+    }
+};
+
+/**
+ * 取得當前選定的 API 服務資訊
+ * @returns {Object} API 服務資訊
+ */
+export const getApiServiceInfo = () => {
+    return {
+        selected: selectedApiBaseUrl,
+        primary: PRIMARY_API_BASE_URL,
+        fallback: FALLBACK_API_BASE_URL,
+        isSelected: !!selectedApiBaseUrl,
+        isSelecting: !!apiSelectionPromise && !selectedApiBaseUrl
+    };
+};
 
 /**
  * 健康檢查 API
  */
 export const healthCheck = async () => {
     try {
-        const response = await fetch(`${API_BASE_URL}/health`);
+        const apiUrl = await getApiUrl('/health');
+        const response = await fetch(apiUrl);
         const data = await response.json();
-        return { success: true, data };
+        return { success: true, data, apiUrl };
     } catch (error) {
         console.error('Health check failed:', error);
         return { success: false, error: error.message };
@@ -30,7 +144,8 @@ export const speechToText = async (audioFile) => {
         const formData = new FormData();
         formData.append('audio', audioFile);
 
-        const response = await fetch(`${API_BASE_URL}/stt`, {
+        const apiUrl = await getApiUrl('/stt');
+        const response = await fetch(apiUrl, {
             method: 'POST',
             body: formData,
         });
@@ -74,7 +189,8 @@ export const askAI = async (question, mode = 'work', callbacks = {}) => {
             mode: mode
         });
 
-        const response = await fetch(`${API_BASE_URL}/ask`, {
+        const apiUrl = await getApiUrl('/ask');
+        const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -190,7 +306,8 @@ export const voiceToAI = async (audioFile, mode = 'work', callbacks = {}) => {
             mode: mode
         });
 
-        const response = await fetch(`${API_BASE_URL}/voice-ask`, {
+        const apiUrl = await getApiUrl('/voice-ask');
+        const response = await fetch(apiUrl, {
             method: 'POST',
             body: formData,
         });
@@ -279,7 +396,8 @@ export const voiceToAI = async (audioFile, mode = 'work', callbacks = {}) => {
  */
 export const textToSpeech = async (text, voice = 'alloy', format = 'mp3', speed = 1.0) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/tts`, {
+        const apiUrl = await getApiUrl('/tts');
+        const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

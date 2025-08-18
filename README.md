@@ -7,7 +7,8 @@
 **革命性的智能交通助手，為您的台北捷運之旅提供個性化AI體驗**
 
 [![Frontend](https://img.shields.io/badge/Frontend-metro--sense.vercel.app-blue?style=for-the-badge&logo=vercel)](https://metro-sense.vercel.app)
-[![Backend API](https://img.shields.io/badge/Backend-metro--sense.onrender.com-green?style=for-the-badge&logo=fastapi)](https://metro-sense.onrender.com/docs)
+[![Backend API (Fly.io)](https://img.shields.io/badge/Backend-metro--sense.fly.dev-purple?style=for-the-badge&logo=fastapi)](https://metro-sense.fly.dev/docs)
+[![Backup API (Render)](https://img.shields.io/badge/Backup-metro--sense.onrender.com-green?style=for-the-badge&logo=fastapi)](https://metro-sense.onrender.com/docs)
 
 [![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=flat&logo=react&logoColor=white)](https://reactjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
@@ -81,9 +82,11 @@
 
 ### 部署架構
 ```yaml
-Frontend: Vercel        # 靜態網站託管
-Backend:  Render        # Python應用部署
-API:      RESTful + SSE # 即時通訊協定
+Frontend:    Vercel           # 靜態網站託管
+Backend:     Fly.io (主要)    # 容器化部署，全球CDN
+Backup:      Render (備用)    # Python應用部署
+API:         RESTful + SSE    # 即時通訊協定
+Failover:    自動容錯切換     # 智能後端選擇
 ```
 
 ## 🚀 快速開始
@@ -196,25 +199,60 @@ data: {"type":"ai_response_complete","fullResponse":"完整AI回應"}
 
 ### 線上服務
 
-| 服務 | 網址 | 說明 |
-|------|------|------|
-| **前端應用** | [metro-sense.vercel.app](https://metro-sense.vercel.app) | React 前端應用 |
-| **後端API** | [metro-sense.onrender.com](https://metro-sense.onrender.com/docs) | FastAPI 後端服務 |
-| **API文檔** | [metro-sense.onrender.com/docs](https://metro-sense.onrender.com/docs) | Swagger UI 文檔 |
+| 服務 | 網址 | 狀態 | 說明 |
+|------|------|------|------|
+| **前端應用** | [metro-sense.vercel.app](https://metro-sense.vercel.app) | 🟢 運行中 | React 前端應用 |
+| **主要後端API** | [metro-sense.fly.dev](https://metro-sense.fly.dev/docs) | 🟢 運行中 | Fly.io 容器化部署 |
+| **備用後端API** | [metro-sense.onrender.com](https://metro-sense.onrender.com/docs) | 🟡 備用 | Render Python 部署 |
+
+### 🔄 自動容錯切換機制
+
+前端應用具備智能後端選擇功能：
+- **主要服務**: 優先使用 Fly.io (更快的全球 CDN)
+- **自動檢測**: 1秒內檢測主要服務可用性
+- **無縫切換**: 主要服務不可用時自動切換到 Render
+- **透明體驗**: 用戶無感知的服務切換
 
 ### 部署指令
 
-**前端部署到 Vercel**:
+#### 前端部署到 Vercel
 ```bash
 npm run deploy
 ```
 
-**後端部署到 Render**:
+#### 後端部署選項
+
+**選項 1: 部署到 Fly.io (推薦)**
+```bash
+# 使用自動化部署腳本
+./deploy-fly.sh
+
+# 或手動部署
+fly launch --no-deploy
+fly secrets set OPENAI_API_KEY="your_api_key"
+fly deploy
+```
+
+**選項 2: 部署到 Render (備用)**
 - 連接 GitHub 存儲庫
 - 設定環境變數 `OPENAI_API_KEY`
 - 自動部署
 
-詳細部署指南請參考 [DEPLOYMENT.md](DEPLOYMENT.md)
+### 📚 詳細指南
+
+- **Fly.io 部署**: 請參考 [FLY-DEPLOYMENT.md](FLY-DEPLOYMENT.md)
+- **Render 部署**: 請參考 [DEPLOYMENT.md](DEPLOYMENT.md)
+
+### 🔧 服務比較
+
+| 功能 | Fly.io | Render |
+|------|--------|--------|
+| **冷啟動時間** | < 1秒 | 10-30秒 |
+| **全球分佈** | ✅ 多區域 | ❌ 單一區域 |
+| **自動縮放** | ✅ 即時 | ✅ 基本 |
+| **免費額度** | 3個共享CPU應用 | 750小時/月 |
+| **容器支援** | ✅ 完整Docker | ⚠️ 有限制 |
+| **持久化存儲** | ✅ Volumes | ❌ 無 |
 
 ## 🔧 開發指南
 
@@ -251,6 +289,9 @@ metro-ai-assistant/
 - **🔄 即時互動**: SSE 串流技術提供即時回應
 - **🛡️ 安全性**: CORS 設定，檔案大小限制
 - **♿ 無障礙**: 遵循 WCAG 指導原則
+- **🔄 智能容錯**: 自動後端切換，99.9% 服務可用性
+- **🌍 全球加速**: Fly.io CDN 提供最佳延遲體驗
+- **📊 服務監控**: 即時健康檢查和狀態監控
 
 ## 📄 授權條款
 

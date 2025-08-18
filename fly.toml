@@ -2,7 +2,7 @@
 # Metro AI Assistant - FastAPI 後端
 
 app = 'metro-sense'
-primary_region = 'hkg'
+primary_region = 'nrt'
 
 [build]
   dockerfile = "api/Dockerfile"
