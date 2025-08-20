@@ -37,7 +37,7 @@ function Demo() {
         "預估到達時間"
       ],
       conclusion: "輕鬆掌握捷運動態，讓您的出行更加順暢便利。",
-      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=1-2866&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2866&embed-host=share&hide-ui=1"
+      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=1-2622&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2622&&embed-host=share&hide-ui=1"
     },
     "捷運小幫手": {
       title: "捷運小幫手",
@@ -89,7 +89,7 @@ function Demo() {
         "專屬優惠活動"
       ],
       conclusion: "每次搭乘都有收穫，讓點數為您帶來更多驚喜和實惠。",
-      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=421-401&p=f&scaling=min-zoom&content-scaling=fixed&page-id=91%3A498&embed-host=share&hide-ui=1"
+      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=1333-7640&p=f&scaling=min-zoom&content-scaling=fixed&page-id=1%3A12929&starting-point-node-id=1333%3A7640&embed-host=share&hide-ui=1"
     }
   };
 
@@ -145,7 +145,7 @@ function Demo() {
       <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200">
         {/* Background image */}
         <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/1aa42c7564cdc89940d5a4a10ff539487538fe11?width=2880"
+          src="/images/background2.webp"
           alt=""
           className="object-cover fixed top-0 left-0 w-full h-full z-0"
         />

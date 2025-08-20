@@ -14,14 +14,18 @@ function Home() {
   usePageTitle("首頁 - 台北捷運智能助手");
 
   const handleMouseEnter = (featureName, event) => {
-    const rect = event.currentTarget.getBoundingClientRect();
+    // 有功能的圖標才顯示 tooltip
+    const functionalIcons = ["主頁", "捷運路線", "捷運小幫手", "路線擁擠程度", "GO優惠", "捷運點", "AI助理"];
 
-    setTooltip({
-      show: true,
-      text: featureName,
-      x: rect.right + 10,
-      y: rect.top + rect.height / 2
-    });
+    if (functionalIcons.includes(featureName)) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      setTooltip({
+        show: true,
+        text: featureName,
+        x: rect.right + 10,
+        y: rect.top + rect.height / 2
+      });
+    }
   };
 
   const handleMouseLeave = () => {
@@ -74,12 +78,10 @@ function Home() {
   return (
     <PageTransition>
       <section id="main-visual" className={styles.homeSection}>
+        {/* 外層1920x1080背景 */}
+        <div className={styles.outerBackground}></div>
+
         <div className={styles.mainContainer}>
-          <img
-            src="/images/background.webp"
-            alt="Abstract blue wave background with the word METRO"
-            className={styles.backgroundImage}
-          />
           <img
             src="/images/train.webp"
             alt="Abstract blue wave with the word TAIPEI"
@@ -116,29 +118,29 @@ function Home() {
             <img
               src="/images/動態消息.webp"
               alt="Decorative floating icon"
-              className={`${styles.icon} ${styles.icon2} ${shakeIcon === "動態消息" ? styles.shake : ""}`}
+              className={`${styles.icon} ${styles.icon2} ${styles.nonFunctional} ${shakeIcon === "動態消息" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("動態消息", e)}
               onMouseLeave={handleMouseLeave}
               onClick={(e) => handleIconClick("動態消息", e)}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: 'default' }}
             />
             <img
               src="/images/下車提醒.webp"
               alt="Decorative floating icon"
-              className={`${styles.icon} ${styles.icon3} ${shakeIcon === "下車提醒" ? styles.shake : ""}`}
+              className={`${styles.icon} ${styles.icon3} ${styles.nonFunctional} ${shakeIcon === "下車提醒" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("下車提醒", e)}
               onMouseLeave={handleMouseLeave}
               onClick={(e) => handleIconClick("下車提醒", e)}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: 'default' }}
             />
             <img
               src="/images/更多功能.webp"
               alt="Decorative floating icon"
-              className={`${styles.icon} ${styles.icon4} ${shakeIcon === "更多功能" ? styles.shake : ""}`}
+              className={`${styles.icon} ${styles.icon4} ${styles.nonFunctional} ${shakeIcon === "更多功能" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("更多功能", e)}
               onMouseLeave={handleMouseLeave}
               onClick={(e) => handleIconClick("更多功能", e)}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: 'default' }}
             />
             <img
               src="/images/捷運小幫手.webp"
@@ -152,11 +154,11 @@ function Home() {
             <img
               src="/images/我的票券.webp"
               alt="Decorative floating icon"
-              className={`${styles.icon} ${styles.icon6} ${shakeIcon === "我的票券" ? styles.shake : ""}`}
+              className={`${styles.icon} ${styles.icon6} ${styles.nonFunctional} ${shakeIcon === "我的票券" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("我的票券", e)}
               onMouseLeave={handleMouseLeave}
               onClick={(e) => handleIconClick("我的票券", e)}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: 'default' }}
             />
             <img
               src="/images/主頁.webp"
@@ -197,11 +199,11 @@ function Home() {
             <img
               src="/images/我的帳戶.webp"
               alt="Decorative floating icon"
-              className={`${styles.icon} ${styles.icon11} ${shakeIcon === "我的帳戶" ? styles.shake : ""}`}
+              className={`${styles.icon} ${styles.icon11} ${styles.nonFunctional} ${shakeIcon === "我的帳戶" ? styles.shake : ""}`}
               onMouseEnter={(e) => handleMouseEnter("我的帳戶", e)}
               onMouseLeave={handleMouseLeave}
               onClick={(e) => handleIconClick("我的帳戶", e)}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: 'default' }}
             />
             <img
               src="/images/捷運點.webp"
