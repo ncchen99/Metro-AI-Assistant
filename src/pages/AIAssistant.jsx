@@ -470,7 +470,7 @@ function AIAssistant() {
                                     <BottomNavigation />
 
                                     {/* iPhone Home Indicator */}
-                                    <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-black rounded-full opacity-30 z-[9999]"></div>
+                                    <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-black rounded-full opacity-70 z-[9999]"></div>
 
                                     {/* Global Overlay */}
                                     {showOverlay && (
