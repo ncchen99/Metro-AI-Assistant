@@ -24,7 +24,7 @@ function Demo() {
         "個性化推薦服務"
       ],
       conclusion: "體驗未來交通的智能化服務，讓每一次出行都變得更加便捷高效。",
-      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=119-708&m=dev&scaling=min-zoom&content-scaling=fixed&page-id=1%3A8836&starting-point-node-id=97%3A3109&embed-host=share&hide-ui=1"
+      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=119-708&m=dev&scaling=scale-down-width&content-scaling=fixed&page-id=1%3A8836&starting-point-node-id=97%3A3109&embed-host=share&hide-ui=1"
     },
     "捷運路線": {
       title: "捷運路線",
@@ -37,7 +37,7 @@ function Demo() {
         "預估到達時間"
       ],
       conclusion: "輕鬆掌握捷運動態，讓您的出行更加順暢便利。",
-      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=1-2622&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2622&&embed-host=share&hide-ui=1"
+      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=1-2622&p=f&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2622&&embed-host=share&hide-ui=1"
     },
     "捷運小幫手": {
       title: "捷運小幫手",
@@ -50,7 +50,7 @@ function Demo() {
         "貼心提醒服務"
       ],
       conclusion: "讓AI助手陪伴您的每一趟捷運之旅，享受智慧出行體驗。",
-      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=740-562&p=f&scaling=min-zoom&content-scaling=fixed&page-id=1%3A11550&starting-point-node-id=740%3A562&embed-host=share&hide-ui=1"
+      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=740-562&p=f&scaling=scale-down-width&content-scaling=fixed&page-id=1%3A11550&starting-point-node-id=740%3A562&embed-host=share&hide-ui=1"
     },
     "路線擁擠度": {
       title: "路線擁擠度",
@@ -63,7 +63,7 @@ function Demo() {
         "歷史數據分析"
       ],
       conclusion: "避開人潮高峰，選擇最佳出行時機，享受舒適的捷運體驗。",
-      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=166-3193&p=f&scaling=min-zoom&content-scaling=fixed&page-id=1%3A12929&starting-point-node-id=159%3A2392&embed-host=share&hide-ui=1"
+      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=166-3193&p=f&scaling=scale-down-width&content-scaling=fixed&page-id=1%3A12929&starting-point-node-id=159%3A2392&embed-host=share&hide-ui=1"
     },
     "GO優惠": {
       title: "GO優惠",
@@ -76,7 +76,7 @@ function Demo() {
         "積點兌換服務"
       ],
       conclusion: "把握每一個優惠機會，讓您的捷運之旅既便利又划算。",
-      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=1-7965&p=f&scaling=min-zoom&content-scaling=fixed&page-id=1%3A6871&embed-host=share&hide-ui=1"
+      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=1-7965&p=f&scaling=scale-down-width&content-scaling=fixed&page-id=1%3A6871&embed-host=share&hide-ui=1"
     },
     "捷運點": {
       title: "捷運點",
@@ -89,7 +89,7 @@ function Demo() {
         "專屬優惠活動"
       ],
       conclusion: "每次搭乘都有收穫，讓點數為您帶來更多驚喜和實惠。",
-      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=1333-7640&p=f&scaling=min-zoom&content-scaling=fixed&page-id=1%3A12929&starting-point-node-id=1333%3A7640&embed-host=share&hide-ui=1"
+      iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=1333-7640&p=f&scaling=scale-down-width&content-scaling=fixed&page-id=1%3A12929&starting-point-node-id=1333%3A7640&embed-host=share&hide-ui=1"
     }
   };
 
@@ -151,43 +151,43 @@ function Demo() {
         />
 
         {/* Main Content Container */}
-        <div className="relative z-10 flex items-center justify-center min-h-screen px-8 py-8 max-lg:flex-col max-lg:justify-center max-lg:space-y-8">
-          <div className="flex items-center justify-between w-full max-w-7xl gap-16 max-lg:flex-col max-lg:gap-8">
+        <div className="relative z-10 flex items-center justify-center min-h-screen px-8 py-8 max-lg:flex-col max-lg:justify-start max-lg:pt-4 max-lg:space-y-4 max-sm:px-4">
+          <div className="flex items-center justify-between w-full max-w-7xl gap-16 max-lg:flex-col max-lg:gap-4 max-sm:gap-2">
 
             {/* Left Side - Description Text */}
             <div className="flex-1 max-w-lg max-lg:text-center">
-              <h1 className="text-5xl font-bold mb-8 leading-tight max-md:text-4xl text-black">
+              <h1 className="text-5xl font-bold mb-8 leading-tight max-md:text-4xl max-sm:text-3xl max-sm:mt-32 max-md:mt-24 text-black">
                 {currentConfig.title}
                 {/* <span className="block text-3xl font-normal mt-2 text-gray-600 max-md:text-2xl">
                   {currentConfig.subtitle}
                 </span> */}
               </h1>
 
-              <div className="space-y-6 text-lg leading-relaxed max-md:text-base">
-                <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800">
+              <div className="space-y-6 text-lg leading-relaxed max-md:text-base max-sm:space-y-4">
+                <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800 max-sm:p-3 max-sm:text-sm">
                   {currentConfig.description}
                 </div>
 
-                <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-6 rounded-3xl">
-                  <h3 className="text-xl font-semibold mb-3 text-[#38C693]">主要功能</h3>
-                  <ul className="space-y-2 text-gray-800">
+                <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-6 rounded-3xl max-sm:p-4">
+                  <h3 className="text-xl font-semibold mb-3 text-[#38C693] max-sm:text-lg max-sm:mb-2">主要功能</h3>
+                  <ul className="space-y-2 text-gray-800 max-sm:space-y-1 max-sm:text-sm">
                     {currentConfig.features.map((feature, index) => (
                       <li key={index} className="flex items-center">
-                        <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2"></span>
                         {feature}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800">
+                <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800 max-sm:p-3 max-sm:text-sm">
                   {currentConfig.conclusion}
                 </div>
               </div>
             </div>
 
             {/* Right Side - iPhone Mockup Container */}
-            <div className="relative z-10 flex-shrink-0">
+            <div className="relative z-10 flex-shrink-0 max-lg:scale-75 max-md:scale-70 mt-auto">
               {/* iPhone Frame - Base layer */}
               <svg width="435" height="892" viewBox="0 0 435 892" className="drop-shadow-2xl">
                 {/* iPhone Frame - Only the border */}
