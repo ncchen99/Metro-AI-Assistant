@@ -52,8 +52,8 @@ function Demo() {
       conclusion: "讓AI助手陪伴您的每一趟捷運之旅，享受智慧出行體驗。",
       iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=740-562&p=f&scaling=min-zoom&content-scaling=fixed&page-id=1%3A11550&starting-point-node-id=740%3A562&embed-host=share&hide-ui=1"
     },
-    "路線擁擠程度": {
-      title: "路線擁擠程度",
+    "路線擁擠度": {
+      title: "路線擁擠度",
       subtitle: "Route Congestion Level",
       description: "即時監控各路線的擁擠狀況，幫助您選擇最舒適的出行時間。",
       features: [

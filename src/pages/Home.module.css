@@ -46,15 +46,88 @@
     }
 }
 
+/* 手機版RWD - 保持1440:1024比例但適應手機螢幕 */
+@media (max-width: 768px) {
+    .homeSection {
+        padding: 20px 0;
+        align-items: flex-start;
+        padding-top: 100px;
+    }
+
+    .mainContainer {
+        /* 根據視窗高度減去上下margin來計算容器高度 */
+        height: calc(100vh - 200px);
+        /* 根據高度計算寬度保持1440:1024比例 */
+        width: calc((100vh - 200px) * 1440 / 1024);
+        /* 重置max-width限制 */
+        max-width: none;
+        /* 讓容器可以超出螢幕邊緣 */
+        margin-left: calc((100vw - calc((100vh - 200px) * 1440 / 1024)) / 2);
+        margin-right: calc((100vw - calc((100vh - 200px) * 1440 / 1024)) / 2);
+    }
+
+    /* 火車在手機版的調整 */
+    .trainImage {
+        width: 200px;
+        bottom: 10px;
+        left: 10px;
+    }
+
+    @keyframes trainMoveOut {
+        0% {
+            transform: translateX(0);
+            opacity: 0.7;
+        }
+
+        20% {
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateX(calc(100vw + 200px));
+            opacity: 0;
+        }
+    }
+}
 
 
-.taipeiImage {
-    position: absolute;
-    top: 84.28%;
-    left: 0;
-    width: 40.63%;
-    height: 15.72%;
-    z-index: 2;
+
+/* 火車圖片 - 固定在左下角 */
+.trainImage {
+    position: fixed;
+    bottom: 0px;
+    left: -20px;
+    width: 300px;
+    height: auto;
+    z-index: 10;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.trainImage:hover {
+    opacity: 1;
+}
+
+/* 火車動畫效果 */
+.trainAnimating {
+    animation: trainMoveOut 2s ease-in-out forwards;
+}
+
+@keyframes trainMoveOut {
+    0% {
+        transform: translateX(0);
+        opacity: 0.7;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 300px));
+        opacity: 0;
+    }
 }
 
 .centralComposition {
@@ -119,11 +192,19 @@
     color: #253c6b;
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
-    font-size: clamp(8px, 1.04vw, 15px);
-    line-height: clamp(20px, 2.77vw, 40px);
-    letter-spacing: clamp(2px, 0.41vw, 6px);
+    font-size: 18px;
+    line-height: 35px;
+    letter-spacing: 2.5px;
     text-align: center;
     white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+    .titleText {
+        font-size: 14px;
+        line-height: 25px;
+        letter-spacing: 2.5px;
+    }
 }
 
 .floatingIcons {
@@ -156,6 +237,12 @@
 
 .nonFunctional:hover {
     transform: none !important;
+    filter: drop-shadow(2px 4px 3px rgba(37, 60, 107, 0.69)) !important;
+}
+
+/* 為有旋轉的不可點擊圖標保持原始旋轉，但移除 hover 縮放效果 */
+.icon11.nonFunctional:hover {
+    transform: rotate(-25.14deg) !important;
     filter: drop-shadow(2px 4px 3px rgba(37, 60, 107, 0.69)) !important;
 }
 
@@ -415,5 +502,26 @@
     60%,
     80% {
         transform: rotate(13.97deg) translateX(5px);
+    }
+}
+
+/* 手機版更小螢幕的額外調整 */
+@media (max-width: 480px) {
+    .homeSection {
+        padding: 10px 0;
+        padding-top: 120px;
+    }
+
+    .mainContainer {
+        height: calc(100vh - 240px);
+        width: calc((100vh - 240px) * 1440 / 1024);
+        margin-left: calc((100vw - calc((100vh - 240px) * 1440 / 1024)) / 2);
+        margin-right: calc((100vw - calc((100vh - 240px) * 1440 / 1024)) / 2);
+    }
+
+    .trainImage {
+        width: 150px;
+        bottom: 5px;
+        left: 5px;
     }
 }

@@ -212,7 +212,7 @@ const ActionCards = ({
 
               {/* Label */}
               <div className="absolute bottom-1 left-2">
-                <span className={`text-sm font-bold tracking-[0.1em] transition-colors duration-300 ${mode === 'work' ? 'text-primary-blue' : 'text-travel-green'}`}>會議模式</span>
+                <span className={`text-sm font-bold tracking-[0.1em] transition-colors duration-300 ${mode === 'work' ? 'text-primary-blue' : 'text-travel-green'}`}> {mode === 'work' ? '會議模式' : '靜音模式'} </span>
               </div>
             </div>
           </div>

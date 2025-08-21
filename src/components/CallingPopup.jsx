@@ -33,7 +33,7 @@ function CallingPopup({ mode = 'work', type = 'meeting' }) {
             className="mt-1 text-l font-bold text-neutral-900"
             data-name="Name"
           >
-            {type === 'meeting' ? '會議模式已開啟' : (
+            {type === 'meeting' ? mode === 'work' ? '會議模式已開啟' : '靜音模式已開啟' : (
               <>
                 正在撥號 <span className={`${mode === 'work' ? 'text-primary-blue' : 'text-travel-green'}`}>
                   {mode === 'work' ? '廠商（09664…' : '爸爸（09664…'}
