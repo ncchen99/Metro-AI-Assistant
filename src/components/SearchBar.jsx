@@ -23,6 +23,13 @@ const SearchBar = ({
     }
   };
 
+  // 處理送出按鈕點擊
+  const handleSendClick = () => {
+    if (!isLoading && inputText.trim()) {
+      onSendMessage(inputText);
+    }
+  };
+
   // 取得麥克風圖示顏色和動畫
   const getMicrophoneStyles = () => {
     const baseColor = mode === 'work' ? '#4088F4' : '#38c693';
@@ -82,13 +89,30 @@ const SearchBar = ({
             className="w-full h-full bg-transparent rounded-full px-4 py-2 text-sm font-bold text-gray-700 tracking-[0.8px] placeholder-text-muted border-0 outline-none disabled:opacity-70"
           />
 
-          {/* Microphone Icon or Loading Spinner */}
+          {/* Send Button, Microphone Icon or Loading Spinner */}
           <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
             {isProcessingVoice ? (
               // Loading spinner
               <div className="w-4 h-4 border-2 border-gray-300 border-t-transparent rounded-full animate-spin"></div>
+            ) : inputText.trim() ? (
+              // Send Button (when there's text input)
+              <button
+                onClick={handleSendClick}
+                disabled={isLoading}
+                className="p-1 rounded-full hover:bg-white/10 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="送出訊息"
+              >
+                <svg
+                  className="w-4 h-4 transition-all duration-200"
+                  style={{ color: mode === 'work' ? '#4088F4' : '#38c693' }}
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M3.105 2.288a.75.75 0 0 0-.826.95l1.414 4.926A1.5 1.5 0 0 0 5.135 9.25h6.115a.75.75 0 0 1 0 1.5H5.135a1.5 1.5 0 0 0-1.442 1.086l-1.414 4.926a.75.75 0 0 0 .826.95 28.897 28.897 0 0 0 15.293-7.155.75.75 0 0 0 0-1.114A28.897 28.897 0 0 0 3.105 2.288Z" />
+                </svg>
+              </button>
             ) : (
-              // Microphone Icon
+              // Microphone Icon (when no text input)
               <button
                 onClick={handleMicClick}
                 disabled={isLoading}

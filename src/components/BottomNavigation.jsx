@@ -1,8 +1,8 @@
 const BottomNavigation = () => {
   return (
-    <div className="absolute bottom-0 w-full z-10">
+    <div className="absolute bottom-0 w-full z-10 ">
       {/* Navigation Container */}
-      <div className="w-full h-[77px] bg-white flex justify-center items-center pb-2">
+      <div className="w-full h-[77px] bg-white flex justify-center items-center pb-[32px]">
         {/* Gradient Bar */}
         <div className="absolute top-0 w-full h-[5px] bg-metro-gradient"></div>
 
