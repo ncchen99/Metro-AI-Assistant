@@ -1,6 +1,6 @@
 # Metro AI Assistant - 分離式部署指南
 
-這個指南將幫助你將台北捷運智能助手進行前後端分離部署：
+這個指南將幫助你將捷境 MetroSense進行前後端分離部署：
 - **前端**: Vercel (React + Vite)
 - **後端**: Render (Python FastAPI)
 
@@ -174,4 +174,4 @@ API: http://localhost:3001
 
 ## 🎉 完成！
 
-部署成功後，你的台北捷運智能助手將可在 Vercel 提供的域名上運行！
+部署成功後，你的捷境 MetroSense將可在 Vercel 提供的域名上運行！

@@ -47,8 +47,8 @@ export default async function handler(req, res) {
 
         // 根據模式調整 system prompt
         const systemPrompt = mode === 'travel'
-            ? `你是台北捷運智能助手，專門協助旅遊相關問題。請用繁體中文回答，提供實用的旅遊建議、景點資訊、交通規劃等。保持友善和專業的語調。`
-            : `你是台北捷運智能助手，專門協助工作通勤相關問題。請用繁體中文回答，提供實用的交通資訊、路線規劃、時刻表查詢等。保持友善和專業的語調。`;
+            ? `你是捷境 MetroSense，專門協助旅遊相關問題。請用繁體中文回答，提供實用的旅遊建議、景點資訊、交通規劃等。保持友善和專業的語調。`
+            : `你是捷境 MetroSense，專門協助工作通勤相關問題。請用繁體中文回答，提供實用的交通資訊、路線規劃、時刻表查詢等。保持友善和專業的語調。`;
 
         console.log(`Processing ${mode} mode question:`, question);
 

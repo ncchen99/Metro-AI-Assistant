@@ -1,6 +1,6 @@
 # Metro AI Assistant - FastAPI Python 版本
 
-台北捷運智能助手的 Python 後端 API，使用 FastAPI 框架開發，部署在 Vercel 上。
+捷境 MetroSense的 Python 後端 API，使用 FastAPI 框架開發，部署在 Vercel 上。
 
 ## 🚀 API 端點
 

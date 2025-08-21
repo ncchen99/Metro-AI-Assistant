@@ -1,4 +1,4 @@
-# 🚇 台北捷運智能助手 (Metro AI Assistant)
+# 🚇 捷境 MetroSense (Metro AI Assistant)
 
 <div align="center">
 
@@ -30,7 +30,7 @@
 
 ## 🌟 專案介紹
 
-台北捷運智能助手是一個結合人工智慧技術的智能交通服務平台，專為台北捷運系統設計。透過先進的OpenAI技術整合，提供用戶個性化的交通規劃、景點推薦和即時資訊查詢服務。
+捷境 MetroSense是一個結合人工智慧技術的智能交通服務平台，專為台北捷運系統設計。透過先進的OpenAI技術整合，提供用戶個性化的交通規劃、景點推薦和即時資訊查詢服務。
 
 ### 🎯 專案目標
 
@@ -305,6 +305,6 @@ metro-ai-assistant/
 
 Made with ❤️ for Taipei Metro users
 
-[回到頂部](#-台北捷運智能助手-metro-ai-assistant)
+[回到頂部](#-捷境 MetroSense-metro-ai-assistant)
 
 </div>

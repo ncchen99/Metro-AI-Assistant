@@ -1,6 +1,6 @@
 """
 Metro AI Assistant - FastAPI 後端服務
-台北捷運智能助手的 Python 後端 API
+捷境 MetroSense的 Python 後端 API
 """
 
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
@@ -26,7 +26,7 @@ load_dotenv()
 # 初始化 FastAPI 應用
 app = FastAPI(
     title="Metro AI Assistant API",
-    description="台北捷運智能助手後端 API",
+    description="捷境 MetroSense後端 API",
     version="1.0.0"
 )
 
@@ -203,7 +203,7 @@ async def ask_ai_sse(request: AskRequest):
                 # 建立 assistant 以使用 Vector Store
                 assistant = openai_client.beta.assistants.create(
                     name="台北捷運助手",
-                    instructions=f"""你是台北捷運智能助手，專門協助用戶解答關於台北捷運的問題。
+                    instructions=f"""你是捷境 MetroSense，專門協助用戶解答關於台北捷運的問題。
 
 當前模式：{mode}
 - work 模式：專注於通勤、工作相關的捷運資訊
@@ -460,7 +460,7 @@ async def voice_to_ai_sse(
                 # 建立 assistant 以使用 Vector Store
                 assistant = openai_client.beta.assistants.create(
                     name="台北捷運助手",
-                    instructions=f"""你是台北捷運智能助手，專門協助用戶解答關於台北捷運的問題。
+                    instructions=f"""你是捷境 MetroSense，專門協助用戶解答關於台北捷運的問題。
 
 當前模式：{mode}
 - work 模式：專注於通勤、工作相關的捷運資訊

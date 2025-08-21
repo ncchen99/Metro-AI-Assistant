@@ -20,7 +20,7 @@ function AIAssistant() {
     const [onOverlayClick, setOnOverlayClick] = useState(null)
 
     // 設置頁面標題
-    usePageTitle("AI 助理 - 台北捷運智能助手")
+    usePageTitle("AI 助理 - 捷境 MetroSense")
 
     // 全螢幕狀態
     const [isFullscreen, setIsFullscreen] = useState(false)
@@ -351,12 +351,12 @@ function AIAssistant() {
                         {/* Left Side - Description Text */}
                         <div className="flex-1 max-w-lg max-lg:text-center">
                             <h1 className="text-5xl font-bold mb-8 leading-tight max-md:text-4xl max-sm:text-3xl max-sm:mt-32 max-md:mt-24 text-black">
-                                北捷智能助手
+                                ＡＩ助理
                             </h1>
 
                             <div className="space-y-6 text-lg leading-relaxed max-md:text-base max-sm:space-y-4">
                                 <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800 max-sm:p-3 max-sm:text-sm">
-                                    革命性的智能交通助手，為您的台北捷運之旅提供個性化體驗。
+                                    智慧化服務，透過個性化捷徑功能與 AI 輔助，讓乘客快速獲取所需資訊，無論通勤或旅遊，都能享有更高效、更便利的捷運體驗
                                 </div>
 
                                 <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-6 rounded-3xl max-sm:p-4">
@@ -364,19 +364,15 @@ function AIAssistant() {
                                     <ul className="space-y-2 text-gray-800 max-sm:space-y-1 max-sm:text-sm">
                                         <li className="flex items-center">
                                             <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2"></span>
-                                            智能路線規劃與即時資訊
+                                            「捷徑」功能，提供一鍵操作，使用者無需切換 APP 或畫面，就能立即啟用不同模式（工作模式／旅遊模式）下的常用功能
                                         </li>
                                         <li className="flex items-center">
                                             <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2"></span>
-                                            工作與旅遊模式切換
+                                            導入自然語言互動，使用者只需直接輸入問題（如「台北車站附近有沒有置物櫃？」），AI 助理即可整合捷運相關資訊並給出精準回覆
                                         </li>
                                         <li className="flex items-center">
                                             <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2"></span>
-                                            AI 語音助手整合
-                                        </li>
-                                        <li className="flex items-center">
-                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2"></span>
-                                            個性化推薦服務
+                                            支援語音輸入，讓操作更直覺，不需繁瑣點擊即可快速獲取資訊；移動中、手持行李或無法方便操作手機時，語音輸入能確保體驗不中斷
                                         </li>
                                     </ul>
                                 </div>

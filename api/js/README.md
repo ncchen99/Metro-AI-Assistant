@@ -1,6 +1,6 @@
 # Metro AI Assistant - Vercel Serverless Functions
 
-台北捷運智能助手的後端 API，部署在 Vercel Serverless Functions 上。
+捷境 MetroSense的後端 API，部署在 Vercel Serverless Functions 上。
 
 ## 🚀 API Endpoints
 
@@ -240,7 +240,7 @@ fetch('/api/tts', {
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-        text: '歡迎使用台北捷運智能助手',
+        text: '歡迎使用捷境 MetroSense',
         voice: 'alloy',
         format: 'mp3',
         speed: 1.0

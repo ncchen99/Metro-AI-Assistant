@@ -1,7 +1,7 @@
 {
   "name": "metro-ai-assistant",
   "version": "1.0.0",
-  "description": "台北捷運智能助手 - AI Assistant with Serverless Functions",
+  "description": "捷境 MetroSense - AI Assistant with Serverless Functions",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -12,7 +12,7 @@ function Home() {
   const [isTrainAnimating, setIsTrainAnimating] = useState(false);
 
   // 設置頁面標題
-  usePageTitle("首頁 - 台北捷運智能助手");
+  usePageTitle("首頁 - 捷境 MetroSense");
 
   const handleMouseEnter = (featureName, event) => {
     // 有功能的圖標才顯示 tooltip

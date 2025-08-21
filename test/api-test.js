@@ -87,7 +87,7 @@ async function testTTSEndpoint() {
     log('\n🔍 測試 TTS Endpoint...', 'blue');
 
     try {
-        const testText = '歡迎使用台北捷運智能助手';
+        const testText = '歡迎使用捷境 MetroSense';
 
         const response = await fetch(`${BASE_URL}/api/tts`, {
             method: 'POST',

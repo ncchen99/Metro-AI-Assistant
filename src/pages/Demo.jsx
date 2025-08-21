@@ -14,14 +14,13 @@ function Demo() {
   // 頁面配置數據
   const pageConfigs = {
     main: {
-      title: "北捷智能助手",
+      title: "主頁（旅遊模式/工作模式）",
       subtitle: "Metro AI Assistant",
-      description: "革命性的智能交通助手，為您的台北捷運之旅提供個性化體驗。",
+      description: "**一鍵切換模式**、**自由設定常用功能**，**AI 聰明推薦地點**，讓你的出行更簡單、更貼心",
       features: [
-        "智能路線規劃與即時資訊",
-        "工作與旅遊模式切換",
-        "AI 語音助手整合",
-        "個性化推薦服務"
+        "**「個性化 Turn On/Off」鍵**，使用者可依需求切換**「工作模式」**或**「旅遊模式」**，AI 助理則依據使用場景主動推薦相關資訊與功能",
+        "使用者可**自行編輯常用功能**，提高自主性",
+        "**AI 助理**將整合常用站點與鄰近站點資訊，並依據使用者需求，**推薦熱門搜尋地點**，以提升查詢效率與體驗",
       ],
       conclusion: "體驗未來交通的智能化服務，讓每一次出行都變得更加便捷高效。",
       iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=119-708&m=dev&scaling=scale-down-width&content-scaling=fixed&page-id=1%3A8836&starting-point-node-id=97%3A3109&embed-host=share&hide-ui=1"
@@ -29,12 +28,12 @@ function Demo() {
     "捷運路線": {
       title: "捷運路線",
       subtitle: "Metro Route System",
-      description: "完整的台北捷運路線資訊，提供即時班次和路線規劃服務。",
+      description: "加入**「歷史紀錄」**、**「AI助理」**、**「儲存地點」**讓捷運路線從單純的交通查詢工具，**升級為以捷運為核心的生活服務平台**",
       features: [
-        "即時路線資訊查詢",
-        "最佳路徑規劃",
-        "轉乘站點導航",
-        "預估到達時間"
+        "**搜尋路線**：快速找到最佳交通或出行方式",
+        "**歷史紀錄**：方便回顧常用或曾經搜尋過的地點",
+        "**AI 助理**：即時提供建議與情境化查詢，讓搜尋更智慧",
+        "**儲存地點**：使用者可建立自己的清單，收藏常用地點，打造個人化資料庫"
       ],
       conclusion: "輕鬆掌握捷運動態，讓您的出行更加順暢便利。",
       iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=1-2622&p=f&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2622&&embed-host=share&hide-ui=1"
@@ -42,12 +41,11 @@ function Demo() {
     "捷運小幫手": {
       title: "捷運小幫手",
       subtitle: "Metro Assistant",
-      description: "您的專屬捷運導航助手，提供個性化的出行建議和服務。",
+      description: "**更改功能名稱**，讓使用者一看就能理解用途；並透過**資訊架構調整**，讓內容瀏覽更**簡潔、直觀**，快速滿足不同使用者的需求",
       features: [
-        "智能語音導航",
-        "個人化路線推薦",
-        "即時交通狀況",
-        "貼心提醒服務"
+        "由**「Go!Map」**更名為**「捷運小助手」**，提升功能辨識度",
+        "**重新優化查詢方式**，快速滿足不同使用者的需求",
+        "**雙向查詢**：輸入設施/商家找對應車站，或點選車站查看全部設施與商家資訊",
       ],
       conclusion: "讓AI助手陪伴您的每一趟捷運之旅，享受智慧出行體驗。",
       iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=740-562&p=f&scaling=scale-down-width&content-scaling=fixed&page-id=1%3A11550&starting-point-node-id=740%3A562&embed-host=share&hide-ui=1"
@@ -55,12 +53,11 @@ function Demo() {
     "路線擁擠度": {
       title: "路線擁擠度",
       subtitle: "Route Congestion Level",
-      description: "即時監控各路線的擁擠狀況，幫助您選擇最舒適的出行時間。",
+      description: "**調整擁擠程度顏色**，將路線與人流分開顯示，**減少混淆並提升判讀效率**；同時提供**自由組合路線選取**，滿足不同需求",
       features: [
-        "即時擁擠度顯示",
-        "尖峰時段預測",
-        "替代路線建議",
-        "歷史數據分析"
+        "**「路線複選」功能**，使用者可以自由選擇路線查看擁擠程度，加強不同路線之間的銜接以及檢視性",
+        "**擁擠程度顏色變更**，將原本的紅橙黃綠換成**紫色的深淺**，顏色越深人越多，避免與路線本身的顏色有衝突",
+        "**「顯示模式切換」功能**，避免多樣的顏色造成使用者視覺負荷，可根據需求選擇欲查看的模式",
       ],
       conclusion: "避開人潮高峰，選擇最佳出行時機，享受舒適的捷運體驗。",
       iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=166-3193&p=f&scaling=scale-down-width&content-scaling=fixed&page-id=1%3A12929&starting-point-node-id=159%3A2392&embed-host=share&hide-ui=1"
@@ -68,12 +65,12 @@ function Demo() {
     "GO優惠": {
       title: "GO優惠",
       subtitle: "GO Promotions",
-      description: "探索最新的捷運優惠活動和折扣方案，讓您的出行更經濟實惠。",
+      description: "我們透過**重整資訊架構**，讓使用者能**更直觀地瀏覽地圖與商家資訊**，快速找到需要的服務與品牌，並進一步**提升使用體驗**",
       features: [
-        "每日優惠推播",
-        "會員專屬折扣",
-        "聯名商家優惠",
-        "積點兌換服務"
+        "**首頁直覺操作**：直接查看累點數、推薦兌換商品，提升使用者兌換意願",
+        "**優化地圖顯示**：一目了然查看附近有哪些地點可「累點」或「消點」，提升探索效率",
+        "**AI 助理**：主動推薦附近景點與熱門地點，像咖啡廳或餐廳，讓搜尋更智慧",
+        "**商家分類**：依據常去商店快速篩選，立即找到常見品牌，如全家、誠品等"
       ],
       conclusion: "把握每一個優惠機會，讓您的捷運之旅既便利又划算。",
       iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=1-7965&p=f&scaling=scale-down-width&content-scaling=fixed&page-id=1%3A6871&embed-host=share&hide-ui=1"
@@ -81,12 +78,12 @@ function Demo() {
     "捷運點": {
       title: "捷運點",
       subtitle: "Metro Points",
-      description: "累積捷運點數，享受更多專屬權益和兌換服務。",
+      description: "改用**瀑布式瀏覽方式**、導入**點數分級機制**，協助使用者迅速找到所需功能。",
       features: [
-        "點數即時累積",
-        "多元兌換選擇",
-        "會員等級升級",
-        "專屬優惠活動"
+        "將**銷點及累點數融合**在同一張地圖，讓使用者更方便使用",
+        "商品使用**瀑布式瀏覽**以提高使用者黏著度",
+        "確立**點數分級機制**（更符合使用者心態：有多少點數、能換什麼）",
+        "**OMO串聯AI助手**打造新兌點模式（不再需要使用者四處搜尋，商家會依據所在位置自動浮現，實現更即時、更貼近生活場景的體驗）"
       ],
       conclusion: "每次搭乘都有收穫，讓點數為您帶來更多驚喜和實惠。",
       iframeSrc: "https://embed.figma.com/proto/tMAW66DZsdvjgcRsNeyXGp/2025-%E5%8C%97%E6%8D%B7%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%88edu-?node-id=1333-7640&p=f&scaling=scale-down-width&content-scaling=fixed&page-id=1%3A12929&starting-point-node-id=1333%3A7640&embed-host=share&hide-ui=1"
@@ -97,7 +94,7 @@ function Demo() {
   const currentConfig = pageConfigs[feature] || pageConfigs.main;
 
   // 設置動態頁面標題
-  usePageTitle(`${currentConfig.title} - 台北捷運智能助手`);
+  usePageTitle(`${currentConfig.title} - 捷境 MetroSense`);
 
   // 當feature改變時重置loading狀態
   useEffect(() => {
@@ -165,24 +162,24 @@ function Demo() {
 
               <div className="space-y-6 text-lg leading-relaxed max-md:text-base max-sm:space-y-4">
                 <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800 max-sm:p-3 max-sm:text-sm">
-                  {currentConfig.description}
+                  <div dangerouslySetInnerHTML={{ __html: currentConfig.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
                 </div>
 
                 <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-6 rounded-3xl max-sm:p-4">
                   <h3 className="text-xl font-semibold mb-3 text-[#38C693] max-sm:text-lg max-sm:mb-2">主要功能</h3>
-                  <ul className="space-y-2 text-gray-800 max-sm:space-y-1 max-sm:text-sm">
+                  <ul className="space-y-3 text-gray-800 max-sm:space-y-2 max-sm:text-sm">
                     {currentConfig.features.map((feature, index) => (
-                      <li key={index} className="flex items-center">
-                        <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2"></span>
-                        {feature}
+                      <li key={index} className="flex items-start">
+                        <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2 mt-2 flex-shrink-0"></span>
+                        <div dangerouslySetInnerHTML={{ __html: feature.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800 max-sm:p-3 max-sm:text-sm">
+                {/* <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800 max-sm:p-3 max-sm:text-sm">
                   {currentConfig.conclusion}
-                </div>
+                </div> */}
               </div>
             </div>
 

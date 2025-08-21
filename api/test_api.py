@@ -59,7 +59,7 @@ def test_tts():
     print("\n🔊 測試文字轉語音...")
     try:
         payload = {
-            "text": "歡迎使用台北捷運智能助手",
+            "text": "歡迎使用捷境 MetroSense",
             "voice": "alloy",
             "format": "mp3",
             "speed": 1.0
