@@ -156,11 +156,11 @@ function Demo() {
 
             {/* Left Side - Description Text */}
             <div className="flex-1 max-w-lg max-lg:text-center">
-              <h1 className="text-5xl font-bold mb-6 leading-tight max-md:text-4xl text-black">
+              <h1 className="text-5xl font-bold mb-8 leading-tight max-md:text-4xl text-black">
                 {currentConfig.title}
-                <span className="block text-3xl font-normal mt-2 text-gray-600 max-md:text-2xl">
+                {/* <span className="block text-3xl font-normal mt-2 text-gray-600 max-md:text-2xl">
                   {currentConfig.subtitle}
-                </span>
+                </span> */}
               </h1>
 
               <div className="space-y-6 text-lg leading-relaxed max-md:text-base">

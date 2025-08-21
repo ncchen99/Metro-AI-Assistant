@@ -339,59 +339,56 @@ function AIAssistant() {
             <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200">
                 {/* Background image */}
                 <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/1aa42c7564cdc89940d5a4a10ff539487538fe11?width=2880"
+                    src="/images/background2.webp"
                     alt=""
                     className="object-cover fixed top-0 left-0 w-full h-full z-0"
                 />
 
                 {/* Main Content Container */}
-                <div className="relative z-10 flex items-center justify-center min-h-screen px-8 py-8 max-lg:flex-col max-lg:justify-center max-lg:space-y-8">
-                    <div className="flex items-center justify-between w-full max-w-7xl gap-16 max-lg:flex-col max-lg:gap-8">
+                <div className="relative z-10 flex items-center justify-center min-h-screen px-8 py-8 max-lg:flex-col max-lg:justify-start max-lg:pt-4 max-lg:space-y-4 max-sm:px-4">
+                    <div className="flex items-center justify-between w-full max-w-7xl gap-16 max-lg:flex-col max-lg:gap-4 max-sm:gap-2">
 
                         {/* Left Side - Description Text */}
                         <div className="flex-1 max-w-lg max-lg:text-center">
-                            <h1 className="text-5xl font-bold mb-6 leading-tight max-md:text-4xl text-black">
+                            <h1 className="text-5xl font-bold mb-8 leading-tight max-md:text-4xl max-sm:text-3xl max-sm:mt-32 max-md:mt-24 text-black">
                                 北捷智能助手
-                                <span className="block text-3xl font-normal mt-2 text-gray-600 max-md:text-2xl">
-                                    Metro AI Assistant
-                                </span>
                             </h1>
 
-                            <div className="space-y-6 text-lg leading-relaxed max-md:text-base">
-                                <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800">
+                            <div className="space-y-6 text-lg leading-relaxed max-md:text-base max-sm:space-y-4">
+                                <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800 max-sm:p-3 max-sm:text-sm">
                                     革命性的智能交通助手，為您的台北捷運之旅提供個性化體驗。
                                 </div>
 
-                                <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-6 rounded-3xl">
-                                    <h3 className="text-xl font-semibold mb-3 text-[#38C693]">主要功能</h3>
-                                    <ul className="space-y-2 text-gray-800">
+                                <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-6 rounded-3xl max-sm:p-4">
+                                    <h3 className="text-xl font-semibold mb-3 text-[#38C693] max-sm:text-lg max-sm:mb-2">主要功能</h3>
+                                    <ul className="space-y-2 text-gray-800 max-sm:space-y-1 max-sm:text-sm">
                                         <li className="flex items-center">
-                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3"></span>
+                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2"></span>
                                             智能路線規劃與即時資訊
                                         </li>
                                         <li className="flex items-center">
-                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3"></span>
+                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2"></span>
                                             工作與旅遊模式切換
                                         </li>
                                         <li className="flex items-center">
-                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3"></span>
+                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2"></span>
                                             AI 語音助手整合
                                         </li>
                                         <li className="flex items-center">
-                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3"></span>
+                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2"></span>
                                             個性化推薦服務
                                         </li>
                                     </ul>
                                 </div>
 
-                                <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800">
+                                <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800 max-sm:p-3 max-sm:text-sm">
                                     體驗未來交通的智能化服務，讓每一次出行都變得更加便捷高效。
                                 </div>
                             </div>
                         </div>
 
                         {/* Right Side - iPhone Mockup Container */}
-                        <div className="relative z-10 flex-shrink-0">
+                        <div className="relative z-10 flex-shrink-0 max-lg:scale-75 max-md:scale-70 mt-auto">
                             {/* iPhone Frame - Base layer */}
                             <svg width="435" height="892" viewBox="0 0 435 892" className="drop-shadow-2xl">
                                 {/* iPhone Frame - Only the border */}
