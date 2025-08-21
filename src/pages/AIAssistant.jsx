@@ -356,29 +356,29 @@ function AIAssistant() {
 
                             <div className="space-y-6 text-lg leading-relaxed max-md:text-base max-sm:space-y-4">
                                 <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800 max-sm:p-3 max-sm:text-sm">
-                                    智慧化服務，透過個性化捷徑功能與 AI 輔助，讓乘客快速獲取所需資訊，無論通勤或旅遊，都能享有更高效、更便利的捷運體驗
+                                    <div dangerouslySetInnerHTML={{ __html: "**智慧化服務**，透過**個性化捷徑功能**與 **AI 輔助**，讓乘客快速獲取所需資訊，無論通勤或旅遊，都能享有更**高效、更便利**的捷運體驗".replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
                                 </div>
 
                                 <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-6 rounded-3xl max-sm:p-4">
                                     <h3 className="text-xl font-semibold mb-3 text-[#38C693] max-sm:text-lg max-sm:mb-2">主要功能</h3>
-                                    <ul className="space-y-2 text-gray-800 max-sm:space-y-1 max-sm:text-sm">
-                                        <li className="flex items-center">
-                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2"></span>
-                                            「捷徑」功能，提供一鍵操作，使用者無需切換 APP 或畫面，就能立即啟用不同模式（工作模式／旅遊模式）下的常用功能
+                                    <ul className="space-y-3 text-gray-800 max-sm:space-y-2 max-sm:text-sm">
+                                        <li className="flex items-start">
+                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2 mt-2 flex-shrink-0"></span>
+                                            <div dangerouslySetInnerHTML={{ __html: "**「捷徑」功能**，提供**一鍵操作**，使用者無需切換 APP 或畫面，就能立即啟用不同模式（**工作模式／旅遊模式**）下的常用功能".replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
                                         </li>
-                                        <li className="flex items-center">
-                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2"></span>
-                                            導入自然語言互動，使用者只需直接輸入問題（如「台北車站附近有沒有置物櫃？」），AI 助理即可整合捷運相關資訊並給出精準回覆
+                                        <li className="flex items-start">
+                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2 mt-2 flex-shrink-0"></span>
+                                            <div dangerouslySetInnerHTML={{ __html: "導入**自然語言互動**，使用者只需直接輸入問題（如「台北車站附近有沒有置物櫃？」），**AI 助理**即可整合捷運相關資訊並給出**精準回覆**".replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
                                         </li>
-                                        <li className="flex items-center">
-                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2"></span>
-                                            支援語音輸入，讓操作更直覺，不需繁瑣點擊即可快速獲取資訊；移動中、手持行李或無法方便操作手機時，語音輸入能確保體驗不中斷
+                                        <li className="flex items-start">
+                                            <span className="w-2 h-2 bg-[#38C693] rounded-full mr-3 max-sm:mr-2 mt-2 flex-shrink-0"></span>
+                                            <div dangerouslySetInnerHTML={{ __html: "支援**語音輸入**，讓操作更直覺，不需繁瑣點擊即可快速獲取資訊；移動中、手持行李或無法方便操作手機時，**語音輸入能確保體驗不中斷**".replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
                                         </li>
                                     </ul>
                                 </div>
 
                                 <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800 max-sm:p-3 max-sm:text-sm">
-                                    體驗未來交通的智能化服務，讓每一次出行都變得更加便捷高效。
+                                    <div dangerouslySetInnerHTML={{ __html: "體驗**未來交通的智能化服務**，讓每一次出行都變得更加**便捷高效**。".replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
                                 </div>
                             </div>
                         </div>
