@@ -108,7 +108,7 @@ function Demo() {
       // iframe載入後再等待1秒讓prototype完全載入
       const timer = setTimeout(() => {
         setShowLoading(false);
-      }, 3000);
+      }, 7000);
 
       return () => clearTimeout(timer);
     }
@@ -135,6 +135,20 @@ function Demo() {
 
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
+  // 保險：若直接進入本頁，確保 dotlottie 播放器已載入
+  useEffect(() => {
+    try {
+      if (window && window.customElements && window.customElements.get('dotlottie-player')) return;
+    } catch (_) {
+      // 忽略非瀏覽器環境
+    }
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs';
+    script.async = true;
+    document.head.appendChild(script);
   }, []);
 
   return (
@@ -175,6 +189,17 @@ function Demo() {
                       </li>
                     ))}
                   </ul>
+                  {(feature === "GO優惠" || feature === "路線擁擠度") && (
+                    <div className="mt-4">
+                      <img
+                        src={feature === "GO優惠" ? "/images/GO.webp" : "/images/擁擠度.webp"}
+                        alt={feature === "GO優惠" ? "GO優惠示意圖" : "路線擁擠度示意圖"}
+                        className="w-full h-auto rounded-2xl object-contain"
+                        loading="eager"
+                        decoding="async"
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* <div className="backdrop-blur-md bg-white/20 border border-white/30 shadow-lg p-4 rounded-3xl text-gray-800 max-sm:p-3 max-sm:text-sm">
@@ -218,7 +243,12 @@ function Demo() {
                 {showLoading && (
                   <div className="absolute inset-0 flex items-center justify-center bg-white rounded-[45px]">
                     <div className="flex flex-col items-center space-y-4">
-                      <div className="w-20 h-20 border-8 border-gray-200 border-t-[#38C693] rounded-full animate-spin"></div>
+                      <dotlottie-player
+                        autoplay
+                        loop
+                        src="/animation/train.lottie"
+                        style={{ width: '200px', height: '200px' }}
+                      />
                     </div>
                   </div>
                 )}

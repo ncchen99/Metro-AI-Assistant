@@ -76,6 +76,40 @@ function Home() {
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
+  // 預先載入 dotlottie 播放器與 train.lottie 動畫檔案以加速後續體驗
+  useEffect(() => {
+    // 載入 dotlottie web component（若尚未註冊）
+    const ensureDotlottiePlayer = () => {
+      try {
+        if (window && window.customElements && window.customElements.get('dotlottie-player')) return;
+      } catch (_) {
+        // 忽略非瀏覽器環境
+      }
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = 'https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs';
+      script.async = true;
+      document.head.appendChild(script);
+    };
+
+    ensureDotlottiePlayer();
+
+    // 暖快取動畫檔案
+    try {
+      fetch('/animation/train.lottie', { cache: 'force-cache' }).catch(() => { });
+    } catch (_) { }
+
+    // 透過 preload 提示瀏覽器提早抓取資源
+    try {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'fetch';
+      link.href = '/animation/train.lottie';
+      link.crossOrigin = 'anonymous';
+      document.head.appendChild(link);
+    } catch (_) { }
+  }, []);
+
   // 處理火車動畫
   const handleTrainHover = () => {
     if (!isTrainAnimating) {
