@@ -14,7 +14,7 @@ function Demo() {
   // 頁面配置數據
   const pageConfigs = {
     main: {
-      title: "主頁（旅遊模式/工作模式）",
+      title: "主頁（旅遊/工作模式）",
       subtitle: "Metro AI Assistant",
       description: "**一鍵切換模式**、**自由設定常用功能**，**AI 聰明推薦地點**，讓你的出行更簡單、更貼心",
       features: [
@@ -23,7 +23,7 @@ function Demo() {
         "**AI 助理**將整合常用站點與鄰近站點資訊，並依據使用者需求，**推薦熱門搜尋地點**，以提升查詢效率與體驗",
       ],
       conclusion: "體驗未來交通的智能化服務，讓每一次出行都變得更加便捷高效。",
-      iframeSrc: "https://embed.figma.com/proto/QBj88guzQCBpq0oSHW5FkD/%E4%B8%BB%E9%A0%81?page-id=0%3A1&node-id=1-5992&p=f&m=dev&scaling=scale-down-width&content-scaling=fixed&page-id=1%3A8836&starting-point-node-id=97%3A3109&embed-host=share&hide-ui=1"
+      iframeSrc: "https://embed.figma.com/proto/QBj88guzQCBpq0oSHW5FkD/主頁?page-id=0%3A1&node-id=1-2669&p=f&m=dev&scaling=scale-down-width&content-scaling=fixed&page-id=1%3A8836&starting-point-node-id=97%3A3109&embed-host=share&hide-ui=1"
     },
     "捷運路線": {
       title: "捷運路線",
